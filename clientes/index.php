@@ -1,11 +1,11 @@
 <?php
-include ('../app/config.php');
-include ('../layout/sesion.php');
+include('../app/config.php');
+include('../layout/sesion.php');
 
-include ('../layout/parte1.php');
+include('../layout/parte1.php');
 
 
-include ('../app/controllers/clientes/listado_de_clientes.php');
+include('../app/controllers/clientes/listado_de_clientes.php');
 
 
 ?>
@@ -48,44 +48,62 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                         <div class="card-body" style="display: block;">
                             <table id="example1" class="table table-bordered table-striped table-sm">
                                 <thead>
-                                <tr>
-                                    <th><center>Nro</center></th>
-                                    <th><center>Nombre del Cliente</center></th>
-                                    <th><center>Celular</center></th>
-                                    <th><center>C.I.N° </center></th>
-                                    <th><center>RUC</center></th>
-                                    <th><center>Descripción de Vehículo</center></th>
-                                    <th><center>Dirección</center></th>
-                                    <th><center>Acciones</center></th>
-                                </tr>
+                                    <tr>
+                                        <th>
+                                            <center>Nro</center>
+                                        </th>
+                                        <th>
+                                            <center>RUC </center>
+                                        </th>
+                                        <th>
+                                            <center>DV</center>
+                                        </th>
+                                        <th>
+                                            <center>Nombre del Cliente</center>
+                                        </th>
+                                        <th>
+                                            <center>Celular</center>
+                                        </th>
+                                        <th>
+                                            <center>Dirección</center>
+                                        </th>
+                                        <th>
+                                            <center>Descripción de Vehículo</center>
+                                        </th>
+                                        <th>
+                                            <center>Acciones</center>
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                                $contador = 0;
-                                foreach ($clientes_datos as $clientes_dato){
-                                    $id_cliente = $clientes_dato['id_cliente'];
-                                    $nombre_cliente = $clientes_dato['nombre_cliente']; ?>
-                                    <tr>
-                                        <td><center><?php echo $contador = $contador + 1;?></center></td>
-                                        <td><?php echo $nombre_cliente;?></td>
-                                        <td>
-                                            <a href="https://wa.me/591<?php echo $clientes_dato['celular'];?>" target="_blank" class="btn btn-success">
-                                                <i class="fa fa-phone"></i>
-                                                <?php echo $clientes_dato['celular'];?>
-                                            </a>
-                                        </td>
-                                        <td><?php echo $clientes_dato['cedula'];?></td>
-                                        <td><?php echo $clientes_dato['ruc'];?></td>
-                                        <td><?php echo $clientes_dato['descripcion_vehiculo'];?></td>
-                                        <td><?php echo $clientes_dato['direccion'];?></td>
-                                        <td>
+                                    <?php
+                                    $contador = 0;
+                                    foreach ($clientes_datos as $clientes_dato) {
+                                        $id_cliente = $clientes_dato['id_cliente'];
+                                        $nombre_cliente = $clientes_dato['nombre_cliente']; ?>
+                                        <tr>
+                                            <td>
+                                                <center><?php echo $contador = $contador + 1; ?></center>
+                                            </td>
+                                            <td><?php echo $clientes_dato['ruc']; ?></td>
+                                            <td><?php echo $clientes_dato['dv']; ?></td>
+                                            <td><?php echo $nombre_cliente; ?></td>
+                                            <td>
+                                                <a href="https://wa.me/+595<?php echo $clientes_dato['celular']; ?>" target="_blank" class="btn btn-success">
+                                                    <i class="fa fa-phone"></i>
+                                                    <?php echo $clientes_dato['celular']; ?>
+                                                </a>
+                                            </td>
+                                            <td><?php echo $clientes_dato['direccion']; ?></td>
+                                            <td><?php echo $clientes_dato['descripcion_vehiculo']; ?></td>
+                                            <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-success" data-toggle="modal"
-                                                            data-target="#modal-update<?php echo $id_cliente;?>">
+                                                        data-target="#modal-update<?php echo $id_cliente; ?>">
                                                         <i class="fa fa-pencil-alt"></i> Editar
                                                     </button>
-                                                    <!-- modal para actualizar proveedor -->
-                                                    <div class="modal fade" id="modal-update<?php echo $id_cliente;?>">
+                                                    <!-- modal para actualizar cliente -->
+                                                    <div class="modal fade" id="modal-update<?php echo $id_cliente; ?>">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header" style="background-color: #116f4a;color: white">
@@ -99,49 +117,49 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
+                                                                                <label for="">RUC</label>
+                                                                                <input type="number" id="ruc<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['ruc']; ?>" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">DV <b>*</b></label>
+                                                                                <input type="text" id="dv<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['dv']; ?>" class="form-control">
+                                                                                <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente; ?>">* Este campo es requerido</small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
                                                                                 <label for="">Nombre del Cliente <b>*</b></label>
-                                                                                <input type="text" id="nombre_cliente<?php echo $id_cliente;?>" value="<?php echo $nombre_cliente;?>" class="form-control">
-                                                                                <small style="color: red;display: none" id="lbl_nombre<?php echo $id_cliente;?>">* Este campo es requerido</small>
+                                                                                <input type="text" id="nombre_cliente<?php echo $id_cliente; ?>" value="<?php echo $nombre_cliente; ?>" class="form-control">
+                                                                                <small style="color: red;display: none" id="lbl_nombre<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="">Celular <b>*</b></label>
-                                                                                <input type="number" id="celular<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['celular'];?>" class="form-control">
-                                                                                <small style="color: red;display: none" id="lbl_celular<?php echo $id_cliente;?>">* Este campo es requerido</small>
+                                                                                <input type="number" id="celular<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['celular']; ?>" class="form-control">
+                                                                                <small style="color: red;display: none" id="lbl_celular<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="">C.I.N°</label>
-                                                                                <input type="number" id="cedula<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['cedula'];?>" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="">RUC <b>*</b></label>
-                                                                                <input type="text" id="ruc<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['ruc'];?>" class="form-control">
-                                                                                <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente;?>">* Este campo es requerido</small>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="">Descripción de Vehículo</label>
-                                                                                <input type="text" id="descripcion_vehiculo<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['descripcion_vehiculo'];?>" class="form-control">
-                                                                                <small style="color: red;display: none" id="lbl_descripcion_vehiculo<?php echo $id_proveedor;?>">* Este campo es requerido</small>
-                                                                            </div>
-                                                                        </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="">Dirección <b>*</b></label>
-                                                                                <textarea name="" id="direccion<?php echo $id_cliente;?>" cols="30" rows="3" class="form-control"><?php echo $clientes_dato['direccion'];?></textarea>
-                                                                                <small style="color: red;display: none" id="lbl_direccion<?php echo $id_cliente;?>">* Este campo es requerido</small>
+                                                                                <textarea name="" id="direccion<?php echo $id_cliente; ?>" cols="30" rows="3" class="form-control"><?php echo $clientes_dato['direccion']; ?></textarea>
+                                                                                <small style="color: red;display: none" id="lbl_direccion<?php echo $id_cliente; ?>">* Este campo es requerido</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Descripción de Vehículo</label>
+                                                                                <input type="text" id="descripcion_vehiculo<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['descripcion_vehiculo']; ?>" class="form-control">
+                                                                                <small style="color: red;display: none" id="lbl_descripcion_vehiculo<?php echo $id_proveedor; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -149,7 +167,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                                 </div>
                                                                 <div class="modal-footer justify-content-between">
                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                                    <button type="button" class="btn btn-success" id="btn_update<?php echo $id_cliente;?>">Actualizar</button>
+                                                                    <button type="button" class="btn btn-success" id="btn_update<?php echo $id_cliente; ?>">Actualizar</button>
                                                                 </div>
                                                             </div>
                                                             <!-- /.modal-content -->
@@ -158,143 +176,152 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                     </div>
                                                     <!-- /.modal -->
                                                     <script>
-                                                        $('#btn_update<?php echo $id_cliente;?>').click(function () {
+                                                        $('#btn_update<?php echo $id_cliente; ?>').click(function() {
 
-                                                            var id_cliente = '<?php echo $id_cliente;?>';
-                                                            var nombre_cliente = $('#nombre_cliente<?php echo $id_cliente;?>').val();
-                                                            var celular = $('#celular<?php echo $id_cliente;?>').val();
-                                                            var cedula = $('#cedula<?php echo $id_cliente;?>').val();
-                                                            var ruc = $('#ruc<?php echo $id_cliente;?>').val();
-                                                            var descripcion_vehiculo = $('#descripcion_vehiculo<?php echo $id_cliente;?>').val();
-                                                            var direccion = $('#direccion<?php echo $id_cliente;?>').val();
+                                                            var id_cliente = '<?php echo $id_cliente; ?>';
+                                                            var ruc = $('#ruc<?php echo $id_cliente; ?>').val();
+                                                            var dv = $('#dv<?php echo $id_cliente; ?>').val();
+                                                            var nombre_cliente = $('#nombre_cliente<?php echo $id_cliente; ?>').val();
+                                                            var celular = $('#celular<?php echo $id_cliente; ?>').val();
+                                                            var direccion = $('#direccion<?php echo $id_cliente; ?>').val();
+                                                            var descripcion_vehiculo = $('#descripcion_vehiculo<?php echo $id_cliente; ?>').val();
 
-                                                            if(nombre_cliente == ""){
-                                                                $('#nombre_cliente<?php echo $id_cliente;?>').focus();
-                                                                $('#lbl_nombre<?php echo $id_cliente;?>').css('display','block');
-                                                            }else if(celular == ""){
-                                                                $('#celular<?php echo $id_cliente;?>').focus();
-                                                                $('#lbl_celular<?php echo $id_cliente;?>').css('display','block');
-                                                            }else if(cedula== ""){
-                                                                $('#cedula<?php echo $id_cliente;?>').focus();
-                                                                $('#lbl_cedula<?php echo $id_cliente;?>').css('display','block');
-                                                            }else if(direccion == ""){
-                                                                $('#direccion<?php echo $id_cliente;?>').focus();
-                                                                $('#lbl_direccion<?php echo $id_cliente;?>').css('display','block');
-                                                            }
-                                                            else {
+                                                            if (nombre_cliente == "") {
+                                                                $('#nombre_cliente<?php echo $id_cliente; ?>').focus();
+                                                                $('#lbl_nombre<?php echo $id_cliente; ?>').css('display', 'block');
+                                                            } else if (celular == "") {
+                                                                $('#celular<?php echo $id_cliente; ?>').focus();
+                                                                $('#lbl_celular<?php echo $id_cliente; ?>').css('display', 'block');
+                                                            } else if (ruc == "") {
+                                                                $('#ruc<?php echo $id_cliente; ?>').focus();
+                                                                $('#lbl_cedula<?php echo $id_cliente; ?>').css('display', 'block');
+                                                            } else if (direccion == "") {
+                                                                $('#direccion<?php echo $id_cliente; ?>').focus();
+                                                                $('#lbl_direccion<?php echo $id_cliente; ?>').css('display', 'block');
+                                                            } else {
                                                                 var url = "../app/controllers/clientes/update.php";
-                                                                $.get(url,{id_cliente:id_cliente,nombre_cliente:nombre_cliente,celular:celular,cedula:cedula,ruc:ruc,descripcion_vehiculo:descripcion_vehiculo,direccion:direccion},function (datos) {
+                                                                $.get(url, {
+                                                                    id_cliente: id_cliente,
+                                                                    ruc: ruc,
+                                                                    dv: dv,
+                                                                    nombre_cliente: nombre_cliente,
+                                                                    celular: celular,
+                                                                    direccion: direccion,
+                                                                    descripcion_vehiculo: descripcion_vehiculo
+                                                                }, function(datos) {
                                                                     $('#respuesta').html(datos);
                                                                 });
                                                             }
 
                                                         });
                                                     </script>
-                                                    <div id="respuesta_update<?php echo $id_cliente;?>"></div>
+                                                    <div id="respuesta_update<?php echo $id_cliente; ?>"></div>
                                                 </div>
 
 
 
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#modal-delete<?php echo $id_cliente;?>">
-                                                    <i class="fa fa-trash"></i> Borrar
-                                                </button>
-                                                <!-- modal para borrar proveedore -->
-                                                <div class="modal fade" id="modal-delete<?php echo $id_cliente;?>">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header" style="background-color: #ca0a0b;color: white">
-                                                                <h4 class="modal-title">¿Esta seguro de eliminar al cliente?</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="">Nombre del Cliente <b>*</b></label>
-                                                                            <input type="text" id="nombre_cliente<?php echo $id_cliente;?>" value="<?php echo $nombre_cliente;?>" class="form-control" disabled>
-                                                                            <small style="color: red;display: none" id="lbl_nombre<?php echo $id_cliente;?>">* Este campo es requerido</small>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="">Celular <b>*</b></label>
-                                                                            <input type="number" id="celular<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['celular'];?>" class="form-control" disabled>
-                                                                            <small style="color: red;display: none" id="lbl_celular<?php echo $id_cliente;?>">* Este campo es requerido</small>
-                                                                        </div>
-                                                                    </div>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#modal-delete<?php echo $id_cliente; ?>">
+                                                        <i class="fa fa-trash"></i> Borrar
+                                                    </button>
+                                                    <!-- modal para borrar cliente -->
+                                                    <div class="modal fade" id="modal-delete<?php echo $id_cliente; ?>">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="background-color: #ca0a0b;color: white">
+                                                                    <h4 class="modal-title">¿Esta seguro de eliminar al cliente?</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
                                                                 </div>
+                                                                <div class="modal-body">
 
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="">C.I.N°</label>
-                                                                            <input type="number" id="cedula<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['cedula'];?>" class="form-control" disabled>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">C.I.N°</label>
+                                                                                <input type="number" id="ruc<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['ruc']; ?>" class="form-control" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">RUC<b>*</b></label>
+                                                                                <input type="text" id="dv<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['dv']; ?>" class="form-control" disabled>
+                                                                                <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente; ?>">* Este campo es requerido</small>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="">RUC<b>*</b></label>
-                                                                            <input type="text" id="ruc<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['ruc'];?>" class="form-control" disabled>
-                                                                            <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente;?>">* Este campo es requerido</small>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Nombre del Cliente <b>*</b></label>
+                                                                                <input type="text" id="nombre_cliente<?php echo $id_cliente; ?>" value="<?php echo $nombre_cliente; ?>" class="form-control" disabled>
+                                                                                <small style="color: red;display: none" id="lbl_nombre<?php echo $id_cliente; ?>">* Este campo es requerido</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Celular <b>*</b></label>
+                                                                                <input type="number" id="celular<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['celular']; ?>" class="form-control" disabled>
+                                                                                <small style="color: red;display: none" id="lbl_celular<?php echo $id_cliente; ?>">* Este campo es requerido</small>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Dirección <b>*</b></label>
+                                                                                <textarea name="" id="direccion<?php echo $id_cliente; ?>" cols="30" rows="3" class="form-control" disabled><?php echo $clientes_dato['direccion']; ?></textarea>
+                                                                                <small style="color: red;display: none" id="lbl_direccion<?php echo $id_cliente; ?>">* Este campo es requerido</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Descripción de Vehículo</label>
+                                                                                <input type="text" id="descripcion_vehiculo<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['descripcion_vehiculo']; ?>" class="form-control" disabled>
+                                                                                <small style="color: red;display: none" id="lbl_descripcion<?php echo $id_cliente; ?>">* Este campo es requerido</small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
                                                                 </div>
-
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="">Descripción de Vehículo</label>
-                                                                            <input type="text" id="descripcion_vehiculo<?php echo $id_cliente;?>" value="<?php echo $clientes_dato['descripcion_vehiculo'];?>" class="form-control" disabled>
-                                                                            <small style="color: red;display: none" id="lbl_descripcion<?php echo $id_cliente;?>">* Este campo es requerido</small>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="">Dirección <b>*</b></label>
-                                                                            <textarea name="" id="direccion<?php echo $id_cliente;?>" cols="30" rows="3" class="form-control" disabled><?php echo $clientes_dato['direccion'];?></textarea>
-                                                                            <small style="color: red;display: none" id="lbl_direccion<?php echo $id_cliente;?>">* Este campo es requerido</small>
-                                                                        </div>
-                                                                    </div>
+                                                                <div class="modal-footer justify-content-between">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                                    <button type="button" class="btn btn-danger" id="btn_delete<?php echo $id_cliente; ?>">Eliminar</button>
                                                                 </div>
-
+                                                                <div id="respuesta_delete<?php echo $id_cliente; ?>"></div>
                                                             </div>
-                                                            <div class="modal-footer justify-content-between">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                                <button type="button" class="btn btn-danger" id="btn_delete<?php echo $id_cliente;?>">Eliminar</button>
-                                                            </div>
-                                                            <div id="respuesta_delete<?php echo $id_cliente;?>"></div>
+                                                            <!-- /.modal-content -->
                                                         </div>
-                                                        <!-- /.modal-content -->
+                                                        <!-- /.modal-dialog -->
                                                     </div>
-                                                    <!-- /.modal-dialog -->
-                                                </div>
-                                                <!-- /.modal -->
-                                                <script>
-                                                    $('#btn_delete<?php echo $id_cliente;?>').click(function () {
+                                                    <!-- /.modal -->
+                                                    <script>
+                                                        $('#btn_delete<?php echo $id_cliente; ?>').click(function() {
 
-                                                        var id_cliente = '<?php echo $id_cliente;?>';
+                                                            var id_cliente = '<?php echo $id_cliente; ?>';
 
                                                             var url2 = "../app/controllers/clientes/delete.php";
-                                                            $.get(url2,{id_cliente:id_cliente},function (datos) {
-                                                                $('#respuesta_delete<?php echo $id_cliente;?>').html(datos);
+                                                            $.get(url2, {
+                                                                id_cliente: id_cliente
+                                                            }, function(datos) {
+                                                                $('#respuesta_delete<?php echo $id_cliente; ?>').html(datos);
                                                             });
 
 
-                                                    });
-                                                </script>
+                                                        });
+                                                    </script>
 
-                                            </div>
+                                                </div>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     <?php
-                                }
-                                ?>
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -311,12 +338,12 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
 <!-- /.content-wrapper -->
 
 
-<?php include ('../layout/mensajes.php'); ?>
-<?php include ('../layout/parte2.php'); ?>
+<?php include('../layout/mensajes.php'); ?>
+<?php include('../layout/parte2.php'); ?>
 
 
 <script>
-    $(function () {
+    $(function() {
         $("#example1").DataTable({
             "pageLength": 5,
             "language": {
@@ -338,26 +365,27 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                     "previous": "Anterior"
                 }
             },
-            "responsive": true, "lengthChange": true, "autoWidth": false,
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
             buttons: [{
-                extend: 'collection',
-                text: 'Reportes',
-                orientation: 'landscape',
-                buttons: [{
-                    text: 'Copiar',
-                    extend: 'copy',
-                }, {
-                    extend: 'pdf'
-                },{
-                    extend: 'csv'
-                },{
-                    extend: 'excel'
-                },{
-                    text: 'Imprimir',
-                    extend: 'print'
-                }
-                ]
-            },
+                    extend: 'collection',
+                    text: 'Reportes',
+                    orientation: 'landscape',
+                    buttons: [{
+                        text: 'Copiar',
+                        extend: 'copy',
+                    }, {
+                        extend: 'pdf'
+                    }, {
+                        extend: 'csv'
+                    }, {
+                        extend: 'excel'
+                    }, {
+                        text: 'Imprimir',
+                        extend: 'print'
+                    }]
+                },
                 {
                     extend: 'colvis',
                     text: 'Visor de columnas',
@@ -387,6 +415,23 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="">RUC <b>*</b></label>
+                            <input type="number" id="ruc" class="form-control">
+                            <small style="color: red;display: none" id="lbl_ruc">* Este campo es requerido</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">DV <b>*</b></label>
+                            <input type="text" id="dv" class="form-control">
+                            <small style="color: red;display: none" id="lbl_dv">* Este campo es requerido</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label for="">Nombre del Cliente <b>*</b></label>
                             <input type="text" id="nombre_cliente" class="form-control">
                             <small style="color: red;display: none" id="lbl_nombre">* Este campo es requerido</small>
@@ -404,20 +449,11 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">C.I.N°</label>
-                            <input type="number" id="cedula" class="form-control">
+                            <label for="">Dirección <b>*</b></label>
+                            <textarea name="" id="direccion" cols="30" rows="3" class="form-control"></textarea>
+                            <small style="color: red;display: none" id="lbl_direccion">* Este campo es requerido</small>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">RUC <b>*</b></label>
-                            <input type="text" id="ruc" class="form-control">
-                            <small style="color: red;display: none" id="lbl_ruc">* Este campo es requerido</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Descripción de Vehículo</label>
@@ -425,15 +461,8 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                             <small style="color: red;display: none" id="lbl_descripcion">* Este campo es requerido</small>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">Dirección <b>*</b></label>
-                            <textarea name="" id="direccion" cols="30" rows="3" class="form-control"></textarea>
-                            <small style="color: red;display: none" id="lbl_direccion">* Este campo es requerido</small>
-                        </div>
-                    </div>
                 </div>
-
+                <input type="hidden" name="iduser" id="iduser" value="<?php echo $id_usuario_sesion; ?>">
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -448,33 +477,43 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
 <!-- /.modal -->
 
 <script>
-    $('#btn_create').click(function () {
+    $('#btn_create').click(function() {
         // alert("guardar");
 
+        var ruc = $('#ruc').val();
+        var dv = $('#dv').val();
         var nombre_cliente = $('#nombre_cliente').val();
         var celular = $('#celular').val();
-        var cedula = $('#cedula').val();
-        var ruc = $('#ruc').val();
-        var descripcion_vehiculo = $('#descripcion_vehiculo').val();
         var direccion = $('#direccion').val();
+        var descripcion_vehiculo = $('#descripcion_vehiculo').val();
+        var iduser_session = $('#iduser').val();
 
 
-        if(nombre_cliente == ""){
+        if (ruc == "") {
+            $('#ruc').focus();
+            $('#lbl_ruc').css('display', 'block');
+        } else if (dv == "") {
+            $('#dv').focus();
+            $('#lbl_dv').css('display', 'block');
+        } else if (nombre_cliente == "") {
             $('#nombre_cliente').focus();
-            $('#lbl_nombre').css('display','block');
-        }else if(celular == ""){
+            $('#lbl_nombre').css('display', 'block');
+        } else if (celular == "") {
             $('#celular').focus();
-            $('#lbl_celular').css('display','block');
-        }else if(cedula == ""){
-            $('#cedula').focus();
-            $('#lbl_cedula').css('display','block');
-        }else if(direccion == ""){
+            $('#lbl_celular').css('display', 'block');
+        } else if (direccion == "") {
             $('#direccion').focus();
-            $('#lbl_direccion').css('display','block');
-        }
-        else {
+            $('#lbl_direccion').css('display', 'block');
+        } else {
             var url = "../app/controllers/clientes/create.php";
-            $.get(url,{nombre_cliente:nombre_cliente,celular:celular,cedula:cedula,ruc:ruc,descripcion_vehiculo:descripcion_vehiculo,direccion:direccion},function (datos) {
+            $.get(url, {
+                ruc: ruc,
+                dv: dv,
+                nombre_cliente: nombre_cliente,
+                celular: celular,
+                direccion: direccion,
+                descripcion_vehiculo: descripcion_vehiculo
+            }, function(datos) {
                 $('#respuesta').html(datos);
             });
         }
@@ -482,12 +521,3 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
 
     });
 </script>
-
-
-
-
-
-
-
-
-

@@ -53,6 +53,10 @@ include ('../app/controllers/roles/listado_de_roles.php');
                                             <input type="text" name="nombres" class="form-control" value="<?php echo $nombres;?>" placeholder="Escriba aquí el nombre del nuevo usuario..." required>
                                         </div>
                                         <div class="form-group">
+                                            <label for="">Usuario</label>
+                                            <input type="text" name="user" class="form-control" value="<?php echo $user;?>" placeholder="Escriba aquí el user del nuevo usuario..." required>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="">Email</label>
                                             <input type="email" name="email" class="form-control" value="<?php echo $email;?>" placeholder="Escriba aquí el correo del nuevo usuario..." required>
                                         </div>

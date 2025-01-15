@@ -71,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="<?php echo $URL;?>/public/templeates/AdminLTE-3.2.0/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block"><?php echo $nombres_sesion;?></a>
+                    <a href="#" class="d-block"><?php echo $nombre_sesion;?></a>
                 </div>
             </div>
 
@@ -81,9 +81,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-
-
-
 
                     <li class="nav-item ">
                         <a href="#" class="nav-link active">

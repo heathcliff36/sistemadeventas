@@ -1,27 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: HILARIWEB
- * Date: 17/1/2023
- * Time: 16:19
- */
 
 include('../../config.php');
 
-$email = $_POST['email'];
+$user = $_POST['user'];
 $password_user = $_POST['password_user'];
 
 
 
 
 $contador = 0;
-$sql = "SELECT * FROM tb_usuarios WHERE email = '$email' ";
+$sql = "SELECT * FROM tb_usuarios WHERE user = '$user' ";
 $query = $pdo->prepare($sql);
 $query->execute();
 $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
 foreach ($usuarios as $usuario){
     $contador = $contador + 1;
-    $email_tabla = $usuario['email'];
+    $user_tabla = $usuario['user'];
     $nombres = $usuario['nombres'];
     $password_user_tabla = $usuario['password_user'];
 }
@@ -31,7 +25,7 @@ foreach ($usuarios as $usuario){
 if( ($contador > 0) && (password_verify($password_user, $password_user_tabla))  ){
     echo "Datos correctos";
     session_start();
-    $_SESSION['sesion_email'] = $email;
+    $_SESSION['sesion_user'] = $user;
     header('Location: '.$URL.'/index.php');
 }else{
     echo "Datos incorrectos, vuelva a intentarlo";

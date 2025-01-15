@@ -46,17 +46,18 @@
     <br>
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="../public/templeates/AdminLTE-3.2.0/index2.html" class="h1"><b>Sistema de </b>VENTAS</a>
+            <a href="" class="h1"><b>Sistema de </b>VENTAS</a>
+            <!-- <a href="../public/templeates/AdminLTE-3.2.0/index2.html" class="h1"><b>Sistema de </b>VENTAS</a> -->
         </div>
         <div class="card-body">
             <p class="login-box-msg">Ingrese sus datos</p>
 
             <form action="../app/controllers/login/ingreso.php" method="post">
                 <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Email">
+                    <input type="text" name="user" class="form-control" placeholder="Usuario">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-user"></span>
                         </div>
                     </div>
                 </div>
