@@ -9,6 +9,7 @@ include ('app/controllers/categorias/listado_de_categoria.php');
 include ('app/controllers/almacen/listado_de_productos.php');
 include ('app/controllers/proveedores/listado_de_proveedores.php');
 include ('app/controllers/clientes/listado_de_clientes.php');
+include ('app/controllers/ventas/listado_de_ventas.php');
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -225,12 +226,12 @@ include ('app/controllers/clientes/listado_de_clientes.php');
                     <div class="small-box" style="background-Color: #457B9D; color: #000;">
                         <div class="inner">
                             <?php
-                            $contador_de_proveedores = 0;
-                            foreach ($proveedores_datos as $proveedores_dato) {
-                                $contador_de_proveedores++;
+                            $contador_de_ventas = 0;
+                            foreach ($ventas_datos as $ventas_dato) {
+                                $contador_de_ventas++;
                             }
                             ?>
-                            <h3><?php echo $contador_de_proveedores; ?></h3>
+                            <h3><?php echo $contador_de_ventas; ?></h3>
                             <p>Ventas Registradas</p>
                         </div>
                         <a href="<?php echo $URL; ?>/proveedores">
@@ -251,12 +252,12 @@ include ('app/controllers/clientes/listado_de_clientes.php');
                     <div class="small-box" style="background-Color: #6A90CA  ; color: #000;">
                         <div class="inner">
                             <?php
-                            $contador_de_proveedores = 0;
+                            $contador_de_servicios = 0;
                             foreach ($proveedores_datos as $proveedores_dato) {
-                                $contador_de_proveedores++;
+                                $contador_de_servicios++;
                             }
                             ?>
-                            <h3><?php echo $contador_de_proveedores; ?></h3>
+                            <h3><?php echo $contador_de_servicios; ?></h3>
                             <p>Servicios Registrados</p>
                         </div>
                         <a href="<?php echo $URL; ?>/proveedores">

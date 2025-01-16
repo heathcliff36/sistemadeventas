@@ -73,7 +73,7 @@ include('../app/controllers/almacen/listado_de_productos.php')
                                                                 <center>Nro</center>
                                                             </th>
                                                             <th>
-                                                                <center>Acción</center>
+                                                                <center>Selecionar</center>
                                                             </th>
                                                             <th>
                                                                 <center>Código</center>
@@ -94,7 +94,16 @@ include('../app/controllers/almacen/listado_de_productos.php')
                                                                 <center>Stock</center>
                                                             </th>
                                                             <th>
+                                                                <center>Precio compra</center>
+                                                            </th>
+                                                            <th>
                                                                 <center>Precio venta</center>
+                                                            </th>
+                                                            <th>
+                                                                <center>Fecha compra</center>
+                                                            </th>
+                                                            <th>
+                                                                <center>Usuario</center>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -113,18 +122,49 @@ include('../app/controllers/almacen/listado_de_productos.php')
                                                                         $('#btn_selecionar<?php echo $id_producto; ?>').click(function() {
 
 
-                                                                            var producto = "<?php echo $productos_dato['nombre']; ?>";
-                                                                            $('#producto').val(producto);
+                                                                            var id_producto = "<?php echo $productos_dato['id_producto']; ?>";
+                                                                            $('#id_producto').val(id_producto);
+
+                                                                            var codigo = "<?php echo $productos_dato['codigo']; ?>";
+                                                                            $('#codigo').val(codigo);
+
+                                                                            var categoria = "<?php echo $productos_dato['categoria']; ?>";
+                                                                            $('#categoria').val(categoria);
+
+                                                                            var nombre = "<?php echo $productos_dato['nombre']; ?>";
+                                                                            $('#nombre_producto').val(nombre);
+
+                                                                            var email = "<?php echo $productos_dato['email']; ?>";
+                                                                            $('#usuario_producto').val(email);
 
                                                                             var descripcion = "<?php echo $productos_dato['descripcion']; ?>";
-                                                                            $('#descripcion').val(descripcion);
+                                                                            $('#descripcio_producto').val(descripcion);
+
+                                                                            var stock = "<?php echo $productos_dato['stock']; ?>";
+                                                                            $('#stock').val(stock);
+                                                                            $('#stock_actual').val(stock);
+
+                                                                            var stock_minimo = "<?php echo $productos_dato['stock_minimo']; ?>";
+                                                                            $('#stock_minimo').val(stock_minimo);
+
+                                                                            var stock_maximo = "<?php echo $productos_dato['stock_maximo']; ?>";
+                                                                            $('#stock_maximo').val(stock_maximo);
+
+                                                                            var precio_compra = "<?php echo $productos_dato['precio_compra']; ?>";
+                                                                            $('#precio_compra').val(precio_compra);
 
                                                                             var precio_venta = "<?php echo $productos_dato['precio_venta']; ?>";
                                                                             $('#precio_venta').val(precio_venta);
 
-                                                                            $('#cantidad').focus;
+                                                                            var fecha_ingreso = "<?php echo $productos_dato['fecha_ingreso']; ?>";
+                                                                            $('#fecha_ingreso').val(fecha_ingreso);
 
-                                                                            //$('#modal-buscar_producto').modal('toggle');
+                                                                            var ruta_img = "<?php echo $URL . '/almacen/img_productos/' . $productos_dato['imagen']; ?>";
+                                                                            $('#img_producto').attr({
+                                                                                src: ruta_img
+                                                                            });
+
+                                                                            $('#modal-buscar_producto').modal('toggle');
 
                                                                         });
                                                                     </script>
@@ -137,7 +177,10 @@ include('../app/controllers/almacen/listado_de_productos.php')
                                                                 <td><?php echo $productos_dato['nombre']; ?></td>
                                                                 <td><?php echo $productos_dato['descripcion']; ?></td>
                                                                 <td><?php echo $productos_dato['stock']; ?></td>
+                                                                <td><?php echo $productos_dato['precio_compra']; ?></td>
                                                                 <td><?php echo $productos_dato['precio_venta']; ?></td>
+                                                                <td><?php echo $productos_dato['fecha_ingreso']; ?></td>
+                                                                <td><?php echo $productos_dato['email']; ?></td>
                                                             </tr>
                                                         <?php
                                                         }
@@ -145,35 +188,6 @@ include('../app/controllers/almacen/listado_de_productos.php')
                                                     </tbody>
                                                     </tfoot>
                                                 </table>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="">Producto</label>
-                                                            <input type="text" class="form-control" name="" id="producto" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <div class="form-group">
-                                                            <label for="">Descripción</label>
-                                                            <input type="text" class="form-control" name="" id="descripcion" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label for="">Cantidad</label>
-                                                            <input type="text" class="form-control" name="" id="cantidad">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label for="">Precio Unitario</label>
-                                                            <input type="text" class="form-control" name="" id="precio_venta" disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /.row -->
-                                                <button style="float: right;" class="btn btn-primary">Agregar</button>
-                                                <br><br>
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +204,7 @@ include('../app/controllers/almacen/listado_de_productos.php')
                                         <tr>
                                             <th style="background-color: #e7e7e7; text-align:center">Nro</th>
                                             <th style="background-color: #e7e7e7; text-align:center">Producto</th>
-                                            <th style="background-color: #e7e7e7; text-align:center">Descripción</th>
+                                            <th style="background-color: #e7e7e7; text-align:center">Detalle</th>
                                             <th style="background-color: #e7e7e7; text-align:center">Cantidad</th>
                                             <th style="background-color: #e7e7e7; text-align:center">Precio Unitario</th>
                                             <th style="background-color: #e7e7e7; text-align:center">Precio SubTotal</th>
@@ -199,54 +213,28 @@ include('../app/controllers/almacen/listado_de_productos.php')
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <center>1</center>
-                                            </td>
+                                            <td><center>1</center></td>
                                             <td>Gaseosa</td>
                                             <td>Coca quina de 3 litros</td>
-                                            <td>
-                                                <center>2</center>
-                                            </td>
-                                            <td>
-                                                <center>15.000</center>
-                                            </td>
-                                            <td>
-                                                <center>30.000</center>
-                                            </td>
-                                            <td>
-                                                <center><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></center>
-                                            </td>
+                                            <td><center>2</center></td>
+                                            <td><center>15.000</center></td>
+                                            <td><center>30.000</center></td>
+                                            <td><center><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></center></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <center>1</center>
-                                            </td>
+                                            <td><center>1</center></td>
                                             <td>Gaseosa</td>
                                             <td>Coca quina de 3 litros</td>
-                                            <td>
-                                                <center>2</center>
-                                            </td>
-                                            <td>
-                                                <center>15.000</center>
-                                            </td>
-                                            <td>
-                                                <center>30.000</center>
-                                            </td>
-                                            <td>
-                                                <center><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></center>
-                                            </td>
+                                            <td><center>2</center></td>
+                                            <td><center>15.000</center></td>
+                                            <td><center>30.000</center></td>
+                                            <td><center><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></center></td>
                                         </tr>
                                         <tr>
                                             <th colspan="3" style="background-color: #e7e7e7; text-align:right">Total</th>
-                                            <th>
-                                                <center>4</center>
-                                            </th>
-                                            <th>
-                                                <center>30.000</center>
-                                            </th>
-                                            <th>
-                                                <center>60.000</center>
-                                            </th>
+                                            <th><center>4</center></th>
+                                            <th><center>30.000</center></th>
+                                            <th><center>60.000</center></th>
                                         </tr>
                                     </tbody>
                                 </table>

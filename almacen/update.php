@@ -90,7 +90,7 @@ include ('../app/controllers/almacen/cargar_producto.php');
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="">Usuario</label>
-                                                            <input type="text" class="form-control" value="<?php echo $email; ?>" disabled>
+                                                            <input type="text" class="form-control" value="<?php echo $user; ?>" disabled>
                                                             <input type="text" name="id_usuario" value="<?php echo $id_usuario; ?>" hidden>
                                                         </div>
                                                     </div>
@@ -150,7 +150,7 @@ include ('../app/controllers/almacen/cargar_producto.php');
                                                     <input type="file" name="image" class="form-control" id="file">
                                                     <input type="text" name="image_text" value="<?php echo $imagen; ?>" hidden>
                                                     <br>
-                                                    <output id="list" style="">
+                                                    <output id="list">
                                                         <img src="<?php echo $URL."/almacen/img_productos/".$imagen; ?>" width="100%" alt="">
                                                     </output>
                                                     <script>

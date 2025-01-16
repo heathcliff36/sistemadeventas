@@ -108,7 +108,7 @@ include ('../app/controllers/compras/listado_de_compras.php');
                                                                                    var nombre = "<?php echo $productos_dato['nombre'];?>";
                                                                                    $('#nombre_producto').val(nombre);
 
-                                                                                   var email = "<?php echo $productos_dato['email'];?>";
+                                                                                   var email = "<?php echo $productos_dato['user'];?>";
                                                                                    $('#usuario_producto').val(email);
 
                                                                                    var descripcion = "<?php echo $productos_dato['descripcion'];?>";
@@ -152,7 +152,7 @@ include ('../app/controllers/compras/listado_de_compras.php');
                                                                        <td><?php echo $productos_dato['precio_compra'];?></td>
                                                                        <td><?php echo $productos_dato['precio_venta'];?></td>
                                                                        <td><?php echo $productos_dato['fecha_ingreso'];?></td>
-                                                                       <td><?php echo $productos_dato['email'];?></td>
+                                                                       <td><?php echo $productos_dato['user'];?></td>
                                                                    </tr>
                                                                    <?php
                                                                }
@@ -507,7 +507,7 @@ include ('../app/controllers/compras/listado_de_compras.php');
                                        <div class="col-md-12">
                                            <div class="form-group">
                                                <label for="">Usuario</label>
-                                               <input type="text" class="form-control" value="<?php echo $email_sesion; ?>" disabled>
+                                               <input type="text" class="form-control" value="<?php echo $user_sesion; ?>" disabled>
                                            </div>
                                        </div>
                                    </div>

@@ -226,15 +226,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo $URL;?>/compras" class="nav-link">
+                            <a href="<?php echo $URL;?>/ventas" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Listado de compras</p>
+                                <p>Listado de ventas</p>
                             </a>
                         </li>
                     <li class="nav-item">
-                        <a href="<?php echo $URL;?>/compras/create.php" class="nav-link">
+                        <a href="<?php echo $URL;?>/ventas/create.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Creación de compra</p>
+                            <p>Generar Venta</p>
                         </a>
                     </li>
                 </ul>

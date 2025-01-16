@@ -77,7 +77,7 @@ include ('../app/controllers/almacen/cargar_producto.php');
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="">Usuario</label>
-                                                            <input type="text" class="form-control" value="<?php echo $email; ?>" disabled>
+                                                            <input type="text" class="form-control" value="<?php echo $user; ?>" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
