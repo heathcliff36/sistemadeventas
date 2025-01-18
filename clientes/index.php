@@ -65,6 +65,9 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                             <center>Celular</center>
                                         </th>
                                         <th>
+                                            <center>Email</center>
+                                        </th>
+                                        <th>
                                             <center>Dirección</center>
                                         </th>
                                         <th>
@@ -94,8 +97,23 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                     <?php echo $clientes_dato['celular']; ?>
                                                 </a>
                                             </td>
+                                            <?php if (empty($clientes_dato['email'])) { ?>
+                                                <td>
+                                                    <p>No posee email</p>
+                                                </td>
+                                            <?php } else { ?>
+                                                <td><?php echo $clientes_dato['email']; ?></td>
+                                            <?php } ?>
+
                                             <td><?php echo $clientes_dato['direccion']; ?></td>
-                                            <td><?php echo $clientes_dato['descripcion_vehiculo']; ?></td>
+
+                                            <?php if (empty($clientes_dato['descripcion_vehiculo'])) { ?>
+                                                <td>
+                                                    <p>No hay datos del vehiculo</p>
+                                                </td>
+                                            <?php } else { ?>
+                                                <td><?php echo $clientes_dato['descripcion_vehiculo']; ?></td>
+                                            <?php } ?>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-success" data-toggle="modal"
@@ -117,15 +135,15 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="">RUC</label>
+                                                                                <label for="">RUC <b>*</b></label>
                                                                                 <input type="number" id="ruc<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['ruc']; ?>" class="form-control">
+                                                                                <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="">DV <b>*</b></label>
+                                                                                <label for="">DV</label>
                                                                                 <input type="text" id="dv<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['dv']; ?>" class="form-control">
-                                                                                <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -150,16 +168,24 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
+                                                                                <label for="">Email </label>
+                                                                                <input type="text" id="email<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['email']; ?>" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
                                                                                 <label for="">Dirección <b>*</b></label>
                                                                                 <textarea name="" id="direccion<?php echo $id_cliente; ?>" cols="30" rows="3" class="form-control"><?php echo $clientes_dato['direccion']; ?></textarea>
                                                                                 <small style="color: red;display: none" id="lbl_direccion<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+
+                                                                    <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="">Descripción de Vehículo</label>
                                                                                 <input type="text" id="descripcion_vehiculo<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['descripcion_vehiculo']; ?>" class="form-control">
-                                                                                <small style="color: red;display: none" id="lbl_descripcion_vehiculo<?php echo $id_proveedor; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -183,18 +209,19 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                             var dv = $('#dv<?php echo $id_cliente; ?>').val();
                                                             var nombre_cliente = $('#nombre_cliente<?php echo $id_cliente; ?>').val();
                                                             var celular = $('#celular<?php echo $id_cliente; ?>').val();
+                                                            var email = $('#email<?php echo $id_cliente; ?>').val();
                                                             var direccion = $('#direccion<?php echo $id_cliente; ?>').val();
                                                             var descripcion_vehiculo = $('#descripcion_vehiculo<?php echo $id_cliente; ?>').val();
 
-                                                            if (nombre_cliente == "") {
+                                                            if (ruc == "") {
+                                                                $('#ruc<?php echo $id_cliente; ?>').focus();
+                                                                $('#lbl_ruc<?php echo $id_cliente; ?>').css('display', 'block');
+                                                            } else if (nombre_cliente == "") {
                                                                 $('#nombre_cliente<?php echo $id_cliente; ?>').focus();
                                                                 $('#lbl_nombre<?php echo $id_cliente; ?>').css('display', 'block');
                                                             } else if (celular == "") {
                                                                 $('#celular<?php echo $id_cliente; ?>').focus();
                                                                 $('#lbl_celular<?php echo $id_cliente; ?>').css('display', 'block');
-                                                            } else if (ruc == "") {
-                                                                $('#ruc<?php echo $id_cliente; ?>').focus();
-                                                                $('#lbl_cedula<?php echo $id_cliente; ?>').css('display', 'block');
                                                             } else if (direccion == "") {
                                                                 $('#direccion<?php echo $id_cliente; ?>').focus();
                                                                 $('#lbl_direccion<?php echo $id_cliente; ?>').css('display', 'block');
@@ -206,6 +233,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                     dv: dv,
                                                                     nombre_cliente: nombre_cliente,
                                                                     celular: celular,
+                                                                    email: email,
                                                                     direccion: direccion,
                                                                     descripcion_vehiculo: descripcion_vehiculo
                                                                 }, function(datos) {
@@ -240,13 +268,13 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="">C.I.N°</label>
+                                                                                <label for="">RUC <b>*</b></label>
                                                                                 <input type="number" id="ruc<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['ruc']; ?>" class="form-control" disabled>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="">RUC<b>*</b></label>
+                                                                                <label for="">DV</label>
                                                                                 <input type="text" id="dv<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['dv']; ?>" class="form-control" disabled>
                                                                                 <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
@@ -273,16 +301,24 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
+                                                                                <label for="">Email </label>
+                                                                                <input type="text" id="email<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['email']; ?>" class="form-control" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
                                                                                 <label for="">Dirección <b>*</b></label>
                                                                                 <textarea name="" id="direccion<?php echo $id_cliente; ?>" cols="30" rows="3" class="form-control" disabled><?php echo $clientes_dato['direccion']; ?></textarea>
                                                                                 <small style="color: red;display: none" id="lbl_direccion<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+
+                                                                    <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="">Descripción de Vehículo</label>
                                                                                 <input type="text" id="descripcion_vehiculo<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['descripcion_vehiculo']; ?>" class="form-control" disabled>
-                                                                                <small style="color: red;display: none" id="lbl_descripcion<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -397,9 +433,6 @@ include('../app/controllers/clientes/listado_de_clientes.php');
 </script>
 
 
-
-
-
 <!-- modal para registrar clientes -->
 <div class="modal fade" id="modal-create">
     <div class="modal-dialog modal-lg">
@@ -449,20 +482,28 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="text" id="email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label for="">Dirección <b>*</b></label>
                             <textarea name="" id="direccion" cols="30" rows="3" class="form-control"></textarea>
                             <small style="color: red;display: none" id="lbl_direccion">* Este campo es requerido</small>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Descripción de Vehículo</label>
                             <input type="text" id="descripcion_vehiculo" class="form-control">
-                            <small style="color: red;display: none" id="lbl_descripcion">* Este campo es requerido</small>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="iduser" id="iduser" value="<?php echo $id_usuario_sesion; ?>">
+                <input type="text" name="iduser" id="iduser" value="<?php echo $id_usuario_sesion; ?>" hidden>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -484,6 +525,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
         var dv = $('#dv').val();
         var nombre_cliente = $('#nombre_cliente').val();
         var celular = $('#celular').val();
+        var email = $('#email').val();
         var direccion = $('#direccion').val();
         var descripcion_vehiculo = $('#descripcion_vehiculo').val();
         var iduser_session = $('#iduser').val();
@@ -492,9 +534,6 @@ include('../app/controllers/clientes/listado_de_clientes.php');
         if (ruc == "") {
             $('#ruc').focus();
             $('#lbl_ruc').css('display', 'block');
-        } else if (dv == "") {
-            $('#dv').focus();
-            $('#lbl_dv').css('display', 'block');
         } else if (nombre_cliente == "") {
             $('#nombre_cliente').focus();
             $('#lbl_nombre').css('display', 'block');
@@ -504,6 +543,8 @@ include('../app/controllers/clientes/listado_de_clientes.php');
         } else if (direccion == "") {
             $('#direccion').focus();
             $('#lbl_direccion').css('display', 'block');
+        } else if (iduser_session == "") {
+            $('#lbl_direccion').css('display', 'block');
         } else {
             var url = "../app/controllers/clientes/create.php";
             $.get(url, {
@@ -511,8 +552,10 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                 dv: dv,
                 nombre_cliente: nombre_cliente,
                 celular: celular,
+                email: email,
                 direccion: direccion,
-                descripcion_vehiculo: descripcion_vehiculo
+                descripcion_vehiculo: descripcion_vehiculo,
+                iduser_session: iduser_session,
             }, function(datos) {
                 $('#respuesta').html(datos);
             });
