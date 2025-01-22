@@ -455,9 +455,8 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">DV <b>*</b></label>
+                            <label for="">DV </label>
                             <input type="text" id="dv" class="form-control">
-                            <small style="color: red;display: none" id="lbl_dv">* Este campo es requerido</small>
                         </div>
                     </div>
                 </div>
