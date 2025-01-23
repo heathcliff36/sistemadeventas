@@ -44,15 +44,19 @@ include ('../app/controllers/roles/listado_de_roles.php');
                                 <div class="col-md-12">
                                     <form action="../app/controllers/usuarios/create.php" method="post">
                                         <div class="form-group">
-                                            <label for="">Nombres</label>
+                                            <label for="">Nombres <b>*</b></label>
                                             <input type="text" name="nombres" class="form-control" placeholder="Escriba aquí el nombre del nuevo usuario..." required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Email</label>
-                                            <input type="email" name="email" class="form-control" placeholder="Escriba aquí el correo del nuevo usuario..." required>
+                                            <label for="">Usuario <b>*</b></label>
+                                            <input type="text" name="user" class="form-control" placeholder="Escriba aquí un usuario..." required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Rol del usurio</label>
+                                            <label for="">Email</label>
+                                            <input type="email" name="email" class="form-control" placeholder="Escriba aquí el correo del nuevo usuario...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Rol del usurio <b>*</b></label>
                                             <select name="rol" id="" class="form-control">
                                                 <?php
                                                 foreach ($roles_datos as $roles_dato){?>
@@ -64,11 +68,11 @@ include ('../app/controllers/roles/listado_de_roles.php');
 
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Contraseña</label>
+                                            <label for="">Contraseña <b>*</b></label>
                                             <input type="text" name="password_user" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Repita la Contraseña</label>
+                                            <label for="">Repita la Contraseña <b>*</b></label>
                                             <input type="text" name="password_repeat" class="form-control" required>
                                         </div>
                                         <hr>

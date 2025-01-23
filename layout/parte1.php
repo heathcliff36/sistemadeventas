@@ -84,185 +84,199 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
 
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Usuarios
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/usuarios" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de usuarios</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/usuarios/create.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Creación de usuario</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        <?php if (($rol_sesion == "ADMINISTRADOR") || ($rol_sesion == "GERENTE")) { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Usuarios
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/usuarios" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de usuarios</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/usuarios/create.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Creación de usuario</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
+                        <?php if ($rol_sesion == "ADMINISTRADOR") { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-address-card"></i>
+                                    <p>
+                                        Roles
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/roles" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de roles</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/roles/create.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Creación de rol</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
+                        <?php if (($rol_sesion == "ADMINISTRADOR") || ($rol_sesion == "GERENTE") || ($rol_sesion == "VENDEDOR1")) { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-hand-holding-usd"></i>
+                                    <p>
+                                        Ventas
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/ventas" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de ventas</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/ventas/create.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Generar Venta</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
+                        <?php if (($rol_sesion == "ADMINISTRADOR") || ($rol_sesion == "GERENTE") || ($rol_sesion == "VENDEDOR2")) { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-car"></i>
+                                    <p>
+                                        Servicios
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/servicios" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de servicios</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/servicios/create.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Creación de servicio</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
+                        <?php if (($rol_sesion == "ADMINISTRADOR") || ($rol_sesion == "GERENTE")) { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-tags"></i>
+                                    <p>
+                                        Categorías
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/categorias" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de categorías</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
+                        <?php if (($rol_sesion == "ADMINISTRADOR") || ($rol_sesion == "GERENTE") || ($rol_sesion == "VENDEDOR1")) { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-list"></i>
+                                    <p>
+                                        Almacen
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/almacen" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de productos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/almacen/create.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Creación de productos</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-cart-plus"></i>
+                                    <p>
+                                        Compras
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/compras" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de compras</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/compras/create.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Creación de compra</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-address-card"></i>
-                                <p>
-                                    Roles
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/roles" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de roles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/roles/create.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Creación de rol</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-hand-holding-usd"></i>
-                                <p>
-                                    Ventas
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/ventas" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de ventas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/ventas/create.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Generar Venta</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tags"></i>
-                                <p>
-                                    Categorías
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/categorias" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de categorías</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-
-
-
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-list"></i>
-                                <p>
-                                    Almacen
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/almacen" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de productos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/almacen/create.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Creación de productos</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-cart-plus"></i>
-                                <p>
-                                    Compras
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/compras" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de compras</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/compras/create.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Creación de compra</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-car"></i>
-                                <p>
-                                    Servicios
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/servicios" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de servicios</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/servicios/create.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Creación de servicio</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
+                        <?php if (($rol_sesion == "ADMINISTRADOR") || ($rol_sesion == "GERENTE")) { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-truck"></i>
+                                    <p>
+                                        Proveedores
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/proveedores" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de proveedores</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
                         <li class="nav-item ">
                             <a href="#" class="nav-link active">
@@ -282,58 +296,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
-
-
-
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-truck"></i>
-                                <p>
-                                    Proveedores
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/proveedores" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de proveedores</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-cogs"></i>
-                                <p>
-                                    Configuración
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/proveedores" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de proveedores</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-
+                        <?php if ($rol_sesion == "ADMINISTRADOR") { ?>
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-cogs"></i>
+                                    <p>
+                                        Configuración
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/proveedores" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de proveedores</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
 
                         <li class="nav-item">
                             <a href="<?php echo $URL; ?>/app/controllers/login/cerrar_sesion.php" class="nav-link" style="background-color: #ca0a0b">
                                 <i class="nav-icon fas fa-door-closed"></i>
-                                <p>
-                                    Cerrar Sesión
-                                </p>
+                                <p>Cerrar Sesión</p>
                             </a>
                         </li>
                     </ul>

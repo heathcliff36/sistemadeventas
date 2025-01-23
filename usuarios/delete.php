@@ -49,8 +49,8 @@ include ('../app/controllers/usuarios/show_usuario.php');
                                             <input type="text" name="nombres" class="form-control" value="<?php echo $nombres;?>" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Email</label>
-                                            <input type="email" name="email" class="form-control" value="<?php echo $email;?>" disabled>
+                                            <label for="">Usuario</label>
+                                            <input type="text" name="user" class="form-control" value="<?php echo $user;?>" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Rol del usuario</label>

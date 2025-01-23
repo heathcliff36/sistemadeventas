@@ -251,7 +251,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                             <tr>
                                                 <td>
                                                     <center><?php echo $contador_de_carrito; ?></center>
-                                                    <input type="text" value="<?php echo $carrito_dato['id_producto']; ?>" id="id_producto<?php echo $contador_de_carrito ; ?>">
+                                                    <input type="text" value="<?php echo $carrito_dato['id_producto']; ?>" id="id_producto<?php echo $contador_de_carrito; ?>" hidden>
                                                 <td><?php echo $carrito_dato['n_producto']; ?></td>
                                                 <td><?php echo $carrito_dato['descripcion']; ?></td>
                                                 <td>
@@ -578,8 +578,8 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                         if (id_cliente == "") {
                                             alert("Seleccione un cliente");
                                         } else {
-                                            //guardar_venta();
                                             actualizar_stock();
+                                            guardar_venta();
                                         }
 
                                         function guardar_venta() {
@@ -605,9 +605,20 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                 var b = '#cantidad_carrito' + i;
                                                 var cantidad_carrito = $(b).html();
 
+                                                var c = '#id_producto' + i;
+                                                var id_producto = $(c).val();
+
                                                 var stock_final = parseFloat(stock_actual - cantidad_carrito);
 
-                                                //alert(stock_actual + " - " + cantidad_carrito + " = " + stock_final)
+                                                //alert(id_producto + " - " + stock_actual + " - " + cantidad_carrito + " = " + stock_final)
+
+                                                var url2 = "../app/controllers/ventas/update_stock.php";
+                                                $.get(url2, {
+                                                    id_producto: id_producto,
+                                                    stock_final: stock_final,
+                                                }, function(datos) {
+
+                                                });
                                             }
 
                                         }
