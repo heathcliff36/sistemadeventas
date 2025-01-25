@@ -1,11 +1,11 @@
 <?php
-include ('../app/config.php');
-include ('../layout/sesion.php');
+include('../app/config.php');
+include('../layout/sesion.php');
 
-include ('../layout/parte1.php');
+include('../layout/parte1.php');
 
-include ('../app/controllers/almacen/listado_de_productos.php');
-include ('../app/controllers/categorias/listado_de_categoria.php');
+include('../app/controllers/almacen/listado_de_productos.php');
+include('../app/controllers/categorias/listado_de_categoria.php');
 
 ?>
 
@@ -51,27 +51,8 @@ include ('../app/controllers/categorias/listado_de_categoria.php');
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="">Código:</label>
-                                                            <?php
-                                                            function ceros($numero){
-                                                                $len=0;
-                                                                $cantidad_ceros = 5;
-                                                                $aux=$numero;
-                                                                $pos=strlen($numero);
-                                                                $len=$cantidad_ceros-$pos;
-                                                                for ($i=0;$i<$len;$i++){
-                                                                    $aux="0".$aux;
-                                                                }
-                                                                return $aux;
-                                                            }
-                                                            $contador_de_id_productos = 1;
-                                                            foreach ($productos_datos as $productos_dato){
-                                                                $contador_de_id_productos = $contador_de_id_productos +1;
-                                                            }
-                                                            ?>
-                                                            <input type="text" class="form-control"
-                                                                   value="<?php echo "P-".ceros($contador_de_id_productos); ?>" disabled>
-                                                            <input type="text"  name="codigo" value="<?php echo "P-".ceros($contador_de_id_productos); ?>" hidden>
+                                                            <label for="codigo">Código:</label>
+                                                            <input type="text" name="codigo" class="form-control" placeholder="Ingrese el código de barras" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -80,15 +61,15 @@ include ('../app/controllers/categorias/listado_de_categoria.php');
                                                             <div style="display: flex">
                                                                 <select name="id_categoria" id="" class="form-control" required>
                                                                     <?php
-                                                                    foreach ($categorias_datos as $categorias_dato){ ?>
+                                                                    foreach ($categorias_datos as $categorias_dato) { ?>
                                                                         <option value="<?php echo $categorias_dato['id_categoria']; ?>">
                                                                             <?php echo $categorias_dato['nombre_categoria']; ?>
                                                                         </option>
-                                                                        <?php
+                                                                    <?php
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                                <a href="<?php echo $URL;?>/categorias" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                                                                <a href="<?php echo $URL; ?>/categorias" class="btn btn-primary"><i class="fa fa-plus"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,10 +155,10 @@ include ('../app/controllers/categorias/listado_de_categoria.php');
                                                                     continue;
                                                                 }
                                                                 var reader = new FileReader();
-                                                                reader.onload = (function (theFile) {
-                                                                    return function (e) {
+                                                                reader.onload = (function(theFile) {
+                                                                    return function(e) {
                                                                         // Insertamos la imagen
-                                                                        document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="',e.target.result, '" width="100%" title="', escape(theFile.name), '"/>'].join('');
+                                                                        document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="', e.target.result, '" width="100%" title="', escape(theFile.name), '"/>'].join('');
                                                                     };
                                                                 })(f);
                                                                 reader.readAsDataURL(f);
@@ -213,5 +194,5 @@ include ('../app/controllers/categorias/listado_de_categoria.php');
 </div>
 <!-- /.content-wrapper -->
 
-<?php include ('../layout/mensajes.php'); ?>
-<?php include ('../layout/parte2.php'); ?>
+<?php include('../layout/mensajes.php'); ?>
+<?php include('../layout/parte2.php'); ?>

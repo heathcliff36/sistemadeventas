@@ -120,8 +120,8 @@ include('../app/controllers/almacen/listado_de_productos.php');
                                                 }
                                                 ?>
 
-                                                <td><?php echo number_format($productos_dato['precio_compra'], 0, ',', '.'); ?></td>
-                                                <td><?php echo number_format($productos_dato['precio_venta'], 0, ',', '.'); ?></td>
+                                                <td><?php echo number_format($productos_dato['precio_compra'], 0, '', '.'); ?></td>
+                                                <td><?php echo number_format($productos_dato['precio_venta'], 0, '', '.'); ?></td>
                                                 <td><?php echo $productos_dato['fecha_ingreso']; ?></td>
                                                 <td><?php echo $productos_dato['nombres']; ?></td>
                                                 <td>
@@ -129,7 +129,10 @@ include('../app/controllers/almacen/listado_de_productos.php');
                                                         <div class="btn-group">
                                                             <a href="show.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Ver</a>
                                                             <a href="update.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil-alt"></i> Editar</a>
-                                                            <a href="delete.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Borrar</a>
+                                                            <?php if (($rol_sesion == 'ADMINISTRADOR') || ($rol_sesion == 'GERENTE')) { ?>
+                                                                <a href="delete.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Borrar</a>
+                                                            <?php } else { ?>
+                                                            <?php } ?>
                                                         </div>
                                                     </center>
                                                 </td>

@@ -75,6 +75,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="info">
                         <a href="#" class="d-block"><?php echo $nombre_sesion; ?></a>
                     </div>
+                    <div class="info">
+                        <a href="#" class="" style="align-items: center; margin-left: 20px; margin-top: 10px;">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    </div>
                 </div>
 
 
@@ -175,13 +180,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <li class="nav-item">
                                         <a href="<?php echo $URL; ?>/servicios" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Listado de servicios</p>
+                                            <p>Listado de Servicios</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="<?php echo $URL; ?>/servicios/create.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Creación de servicio</p>
+                                            <p>Creación de Servicios</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/servicios/ventser.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Facturación de Servicios</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -298,21 +309,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <?php if ($rol_sesion == "ADMINISTRADOR") { ?>
                             <li class="nav-item ">
-                                <a href="#" class="nav-link active">
+                                <a href="<?php echo $URL; ?>/configuracion" class="nav-link active">
                                     <i class="nav-icon fas fa-cogs"></i>
-                                    <p>
-                                        Configuración
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
+                                    <p>Configuración</p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="<?php echo $URL; ?>/proveedores" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Listado de proveedores</p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                         <?php } ?>
 

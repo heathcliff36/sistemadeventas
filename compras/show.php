@@ -1,12 +1,12 @@
 <?php
-include ('../app/config.php');
-include ('../layout/sesion.php');
+include('../app/config.php');
+include('../layout/sesion.php');
 
-include ('../layout/parte1.php');
+include('../layout/parte1.php');
 
-include ('../app/controllers/almacen/listado_de_productos.php');
-include ('../app/controllers/proveedores/listado_de_proveedores.php');
-include ('../app/controllers/compras/cargar_compra.php');
+include('../app/controllers/almacen/listado_de_productos.php');
+include('../app/controllers/proveedores/listado_de_proveedores.php');
+include('../app/controllers/compras/cargar_compra.php');
 
 ?>
 
@@ -131,7 +131,7 @@ include ('../app/controllers/compras/cargar_compra.php');
                                             <div class="form-group">
                                                 <label for="">Imagen del producto</label>
                                                 <center>
-                                                    <img src="<?php echo $URL."/almacen/img_productos/".$imagen;?>" id="img_producto" width="50%" alt="">
+                                                    <img src="<?php echo $URL . "/almacen/img_productos/" . $imagen; ?>" id="img_producto" width="50%" alt="">
                                                 </center>
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@ include ('../app/controllers/compras/cargar_compra.php');
                                                 <div class="form-group">
                                                     <input type="text" id="id_proveedor" hidden>
                                                     <label for="">Nombre del proveedor </label>
-                                                    <input type="text" value="<?= $nombre_proveedor; ?>" id="nombre_proveedor" class="form-control" disabled>
+                                                    <input type="text" value="<?= $nombre_proveedor_tabla; ?>" id="nombre_proveedor" class="form-control" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -257,6 +257,12 @@ include ('../app/controllers/compras/cargar_compra.php');
                                                 <input type="text" class="form-control" value="<?php echo $nombres_usuario; ?>" disabled>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <a href="index.php" class="btn btn-secondary btn-block">Volver</a>
+                                            </div>
+                                        </div>
                                     </div>
                                     <hr>
 
@@ -280,11 +286,5 @@ include ('../app/controllers/compras/cargar_compra.php');
 </div>
 <!-- /.content-wrapper -->
 
-<?php include ('../layout/mensajes.php'); ?>
-<?php include ('../layout/parte2.php'); ?>
-
-
-
-
-
-
+<?php include('../layout/mensajes.php'); ?>
+<?php include('../layout/parte2.php'); ?>

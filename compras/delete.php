@@ -1,12 +1,12 @@
 <?php
-include ('../app/config.php');
-include ('../layout/sesion.php');
+include('../app/config.php');
+include('../layout/sesion.php');
 
-include ('../layout/parte1.php');
+include('../layout/parte1.php');
 
-include ('../app/controllers/almacen/listado_de_productos.php');
-include ('../app/controllers/proveedores/listado_de_proveedores.php');
-include ('../app/controllers/compras/cargar_compra.php');
+include('../app/controllers/almacen/listado_de_productos.php');
+include('../app/controllers/proveedores/listado_de_proveedores.php');
+include('../app/controllers/compras/cargar_compra.php');
 
 ?>
 
@@ -108,13 +108,13 @@ include ('../app/controllers/compras/cargar_compra.php');
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="">Precio compra:</label>
-                                                        <input type="number" value="<?= $precio_compra_producto; ?>" name="precio_compra" id="precio_compra" class="form-control" disabled>
+                                                        <input type="number" value="<?= number_format($precio_compra_producto, 0, '', '.'); ?>" name="precio_compra" id="precio_compra" class="form-control" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="">Precio venta:</label>
-                                                        <input type="number" value="<?= $precio_venta_producto; ?>" name="precio_venta" id="precio_venta" class="form-control" disabled>
+                                                        <input type="number" value="<?= number_format($precio_venta_producto, 0, '', '.'); ?>" name="precio_venta" id="precio_venta" class="form-control" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -131,7 +131,7 @@ include ('../app/controllers/compras/cargar_compra.php');
                                             <div class="form-group">
                                                 <label for="">Imagen del producto</label>
                                                 <center>
-                                                    <img src="<?php echo $URL."/almacen/img_productos/".$imagen;?>" id="img_producto" width="50%" alt="">
+                                                    <img src="<?php echo $URL . "/almacen/img_productos/" . $imagen; ?>" id="img_producto" width="50%" alt="">
                                                 </center>
                                             </div>
                                         </div>
@@ -196,8 +196,8 @@ include ('../app/controllers/compras/cargar_compra.php');
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
 
+                <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-outline card-danger">
@@ -224,21 +224,21 @@ include ('../app/controllers/compras/cargar_compra.php');
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Fecha de la compra</label>
-                                                <input type="date" value="<?= $fecha_compra; ?>" class="form-control" id="fecha_compra" disabled>
+                                                <input type="date" style="text-align: center;" value="<?= $fecha_compra; ?>" class="form-control" id="fecha_compra" disabled>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Comprobante de la compra</label>
-                                                <input type="text" value="<?= $comprobante; ?>" class="form-control" id="comprobante" disabled>
+                                                <input type="text" style="text-align: center;" value="<?= $comprobante; ?>" class="form-control" id="comprobante" disabled>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Precio de la compra</label>
-                                                <input type="text" value="<?= $precio_compra; ?>" class="form-control" id="precio_compra_controlador" disabled>
+                                                <input type="text" value="<?= number_format($precio_compra, 0, '', '.'); ?>" style="text-align: center;" class="form-control" id="precio_compra_controlador" disabled>
                                             </div>
                                         </div>
 
@@ -260,14 +260,17 @@ include ('../app/controllers/compras/cargar_compra.php');
 
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                               <button class="btn btn-danger btn-block" id="btn_eliminar"><i class="fa fa-trash"></i> Eliminar</button>
+                                                <a href="index.php" class="btn btn-secondary btn-block">Cancelar</a>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-danger btn-block" id="btn_eliminar"><i class="fa fa-trash"></i> Eliminar</button>
                                             </div>
                                         </div>
 
                                         <div id="respuesta_delete"></div>
 
                                         <script>
-                                            $('#btn_eliminar').click(function () {
+                                            $('#btn_eliminar').click(function() {
                                                 var id_compra = '<?php echo $id_compra_get; ?>';
                                                 var id_producto = $('#id_producto').val();
                                                 var cantidad_compra = '<?= $cantidad; ?>';
@@ -293,7 +296,12 @@ include ('../app/controllers/compras/cargar_compra.php');
 
                                                 function eliminar() {
                                                     var url = "../app/controllers/compras/delete.php";
-                                                    $.get(url,{id_compra:id_compra,id_producto:id_producto,cantidad_compra:cantidad_compra,stock_actual:stock_actual},function (datos) {
+                                                    $.get(url, {
+                                                        id_compra: id_compra,
+                                                        id_producto: id_producto,
+                                                        cantidad_compra: cantidad_compra,
+                                                        stock_actual: stock_actual
+                                                    }, function(datos) {
                                                         $('#respuesta_delete').html(datos);
                                                     });
                                                 }
@@ -323,11 +331,5 @@ include ('../app/controllers/compras/cargar_compra.php');
 </div>
 <!-- /.content-wrapper -->
 
-<?php include ('../layout/mensajes.php'); ?>
-<?php include ('../layout/parte2.php'); ?>
-
-
-
-
-
-
+<?php include('../layout/mensajes.php'); ?>
+<?php include('../layout/parte2.php'); ?>

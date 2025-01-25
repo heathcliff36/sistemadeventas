@@ -20,7 +20,7 @@ $sentencia = $pdo->prepare("UPDATE tb_clientes
         email=:email,
         direccion=:direccion,
         descripcion_vehiculo=:descripcion_vehiculo,
-        fyh_actualizacion=:fyh_actualizacion 
+        fyh_update=:fyh_update 
     WHERE id_cliente = :id_cliente ");
 
 $sentencia->bindParam('ruc', $ruc);
@@ -30,7 +30,7 @@ $sentencia->bindParam('celular', $celular);
 $sentencia->bindParam('email', $email);
 $sentencia->bindParam('direccion', $direccion);
 $sentencia->bindParam('descripcion_vehiculo', $descripcion_vehiculo);
-$sentencia->bindParam('fyh_actualizacion', $fechaHora);
+$sentencia->bindParam('fyh_update', $fechaHora);
 $sentencia->bindParam('id_cliente', $id_cliente);
 
 

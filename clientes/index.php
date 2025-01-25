@@ -53,7 +53,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                             <center>Nro</center>
                                         </th>
                                         <th>
-                                            <center>RUC </center>
+                                            <center>RUC/C.I. </center>
                                         </th>
                                         <th>
                                             <center>DV</center>
@@ -135,7 +135,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="">RUC <b>*</b></label>
+                                                                                <label for="">RUC/C.I. <b>*</b></label>
                                                                                 <input type="number" id="ruc<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['ruc']; ?>" class="form-control">
                                                                                 <small style="color: red;display: none" id="lbl_ruc<?php echo $id_cliente; ?>">* Este campo es requerido</small>
                                                                             </div>
@@ -169,7 +169,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="">Email </label>
-                                                                                <input type="text" id="email<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['email']; ?>" class="form-control">
+                                                                                <input type="email" id="email<?php echo $id_cliente; ?>" value="<?php echo $clientes_dato['email']; ?>" class="form-control">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -189,12 +189,12 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                                 <div class="modal-footer justify-content-between">
                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                                                     <button type="button" class="btn btn-success" id="btn_update<?php echo $id_cliente; ?>">Actualizar</button>
                                                                 </div>
+                                                                <div id="respuesta_update<?php echo $id_cliente; ?>"></div>
                                                             </div>
                                                             <!-- /.modal-content -->
                                                         </div>
@@ -212,6 +212,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                             var email = $('#email<?php echo $id_cliente; ?>').val();
                                                             var direccion = $('#direccion<?php echo $id_cliente; ?>').val();
                                                             var descripcion_vehiculo = $('#descripcion_vehiculo<?php echo $id_cliente; ?>').val();
+                                                            var iduser = $('#iduser').val();
 
                                                             if (ruc == "") {
                                                                 $('#ruc<?php echo $id_cliente; ?>').focus();
@@ -235,15 +236,14 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                                     celular: celular,
                                                                     email: email,
                                                                     direccion: direccion,
-                                                                    descripcion_vehiculo: descripcion_vehiculo
+                                                                    descripcion_vehiculo: descripcion_vehiculo,
+                                                                    iduser: iduser,
                                                                 }, function(datos) {
-                                                                    $('#respuesta').html(datos);
+                                                                    $('#respuesta_update<?php echo $id_cliente; ?>').html(datos);
                                                                 });
                                                             }
-
                                                         });
                                                     </script>
-                                                    <div id="respuesta_update<?php echo $id_cliente; ?>"></div>
                                                 </div>
 
 
@@ -373,66 +373,6 @@ include('../app/controllers/clientes/listado_de_clientes.php');
 </div>
 <!-- /.content-wrapper -->
 
-
-<?php include('../layout/mensajes.php'); ?>
-<?php include('../layout/parte2.php'); ?>
-
-
-<script>
-    $(function() {
-        $("#example1").DataTable({
-            "pageLength": 5,
-            "language": {
-                "emptyTable": "No hay información",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Clientes",
-                "infoEmpty": "Mostrando 0 a 0 de 0 Clientes",
-                "infoFiltered": "(Filtrado de _MAX_ total Clientes)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Clientes",
-                "loadingRecords": "Cargando...",
-                "processing": "Procesando...",
-                "search": "Buscador:",
-                "zeroRecords": "Sin resultados encontrados",
-                "paginate": {
-                    "first": "Primero",
-                    "last": "Ultimo",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            },
-            "responsive": true,
-            "lengthChange": true,
-            "autoWidth": false,
-            buttons: [{
-                    extend: 'collection',
-                    text: 'Reportes',
-                    orientation: 'landscape',
-                    buttons: [{
-                        text: 'Copiar',
-                        extend: 'copy',
-                    }, {
-                        extend: 'pdf'
-                    }, {
-                        extend: 'csv'
-                    }, {
-                        extend: 'excel'
-                    }, {
-                        text: 'Imprimir',
-                        extend: 'print'
-                    }]
-                },
-                {
-                    extend: 'colvis',
-                    text: 'Visor de columnas',
-                    collectionLayout: 'fixed three-column'
-                }
-            ],
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-</script>
-
-
 <!-- modal para registrar clientes -->
 <div class="modal fade" id="modal-create">
     <div class="modal-dialog modal-lg">
@@ -518,7 +458,6 @@ include('../app/controllers/clientes/listado_de_clientes.php');
 
 <script>
     $('#btn_create').click(function() {
-        // alert("guardar");
 
         var ruc = $('#ruc').val();
         var dv = $('#dv').val();
@@ -559,7 +498,64 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                 $('#respuesta').html(datos);
             });
         }
+    });
+</script>
 
 
+<?php include('../layout/mensajes.php'); ?>
+<?php include('../layout/parte2.php'); ?>
+
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "pageLength": 5,
+            "language": {
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Clientes",
+                "infoEmpty": "Mostrando 0 a 0 de 0 Clientes",
+                "infoFiltered": "(Filtrado de _MAX_ total Clientes)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Clientes",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscador:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            buttons: [{
+                    extend: 'collection',
+                    text: 'Reportes',
+                    orientation: 'landscape',
+                    buttons: [{
+                        text: 'Copiar',
+                        extend: 'copy',
+                    }, {
+                        extend: 'pdf'
+                    }, {
+                        extend: 'csv'
+                    }, {
+                        extend: 'excel'
+                    }, {
+                        text: 'Imprimir',
+                        extend: 'print'
+                    }]
+                },
+                {
+                    extend: 'colvis',
+                    text: 'Visor de columnas',
+                    collectionLayout: 'fixed three-column'
+                }
+            ],
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>

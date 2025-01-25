@@ -13,13 +13,13 @@ if ($sentencia->execute()) {
 
 ?>
     <script>
-        location.href = "<?php echo $URL; ?>/servicios/create.php";
+        location.href = "<?php echo $URL; ?>/servicios/ventser.php";
     </script>
 <?php
 } else {
 ?>
     <script>
-        location.href = "<?php echo $URL; ?>/servicios/create.php";
+        location.href = "<?php echo $URL; ?>/servicios/ventser.php";
     </script>
 <?php
 }

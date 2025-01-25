@@ -19,7 +19,7 @@ $sentencia->bindParam('fyh_creacion', $fechaHora);
 if ($sentencia->execute()) {
 ?>
     <script>
-        location.href = "<?php echo $URL; ?>/servicios/create.php";
+        location.href = "<?php echo $URL; ?>/servicios/ventser.php";
     </script>
 <?php
 } else {
@@ -32,7 +32,7 @@ if ($sentencia->execute()) {
     //  header('Location: '.$URL.'/categorias');
 ?>
     <script>
-        location.href = "<?php echo $URL; ?>/servicios/create.php";
+        location.href = "<?php echo $URL; ?>/servicios/ventser.php";
     </script>
 <?php
 }

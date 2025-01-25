@@ -4,8 +4,8 @@ include('../layout/sesion.php');
 
 include('../layout/parte1.php');
 
-include('../app/controllers/servicios/listado_de_servicios.php');
 include('../app/controllers/categorias/listado_de_categoria.php');
+include('../app/controllers/servicios/cargar_servicio.php');
 
 ?>
 
@@ -16,7 +16,7 @@ include('../app/controllers/categorias/listado_de_categoria.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Registro de un Nuevo Servicio</h1>
+                    <h1 class="m-0">Actualizar Servicio</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -30,7 +30,7 @@ include('../app/controllers/categorias/listado_de_categoria.php');
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
+                    <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Llene los datos con cuidado</h3>
                             <div class="card-tools">
@@ -44,7 +44,8 @@ include('../app/controllers/categorias/listado_de_categoria.php');
                             <div class="row">
                                 <div class="col-md-12">
 
-                                    <form action="../app/controllers/servicios/create.php" method="post" enctype="multipart/form-data">
+                                    <form action="../app/controllers/servicios/update.php" method="post" enctype="multipart/form-data">
+                                        <input type="text" value="<?php echo $id_servicio_get; ?>" name="id_servicio" hidden>
 
                                         <div class="row">
                                             <div class="col-md-9">
@@ -52,27 +53,9 @@ include('../app/controllers/categorias/listado_de_categoria.php');
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="">Código:</label>
-                                                            <?php
-                                                            function ceros($numero)
-                                                            {
-                                                                $len = 0;
-                                                                $cantidad_ceros = 5;
-                                                                $aux = $numero;
-                                                                $pos = strlen($numero);
-                                                                $len = $cantidad_ceros - $pos;
-                                                                for ($i = 0; $i < $len; $i++) {
-                                                                    $aux = "0" . $aux;
-                                                                }
-                                                                return $aux;
-                                                            }
-                                                            $contador_de_id_servicios = 1;
-                                                            foreach ($servicios_datos as $servicios_dato) {
-                                                                $contador_de_id_servicios = $contador_de_id_servicios + 1;
-                                                            }
-                                                            ?>
                                                             <input type="text" class="form-control"
-                                                                value="<?php echo "S-" . ceros($contador_de_id_servicios); ?>" disabled>
-                                                            <input type="text" name="codigo" value="<?php echo "S-" . ceros($contador_de_id_servicios); ?>" hidden>
+                                                                value="<?php echo $codigo; ?>" disabled>
+                                                            <input type="text" name="codigo" value="<?php echo $codigo; ?>" hidden>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -81,22 +64,24 @@ include('../app/controllers/categorias/listado_de_categoria.php');
                                                             <div style="display: flex">
                                                                 <select name="id_categoria" id="" class="form-control" required>
                                                                     <?php
-                                                                    foreach ($categorias_datos as $categorias_dato) { ?>
-                                                                        <option value="<?php echo $categorias_dato['id_categoria']; ?>">
-                                                                            <?php echo $categorias_dato['nombre_categoria']; ?>
+                                                                    foreach ($categorias_datos as $categorias_dato) {
+                                                                        $nombre_categoria_tabla = $categorias_dato['nombre_categoria'];
+                                                                        $id_categoria = $categorias_dato['id_categoria'] ?>
+                                                                        <option value="<?php echo $id_categoria; ?>" <?php if ($nombre_categoria_tabla == $nombre_categoria) { ?> selected="selected" <?php } ?>>
+                                                                            <?php echo $nombre_categoria_tabla; ?>
                                                                         </option>
                                                                     <?php
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                                <a style="margin-left: 5px;" href="<?php echo $URL; ?>/categorias" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="">Nombre del Servicio:</label>
-                                                            <input type="text" name="nombre" class="form-control" required>
+                                                            <input type="text" name="nombre" value="<?php echo $nombre_servicio; ?>" class="form-control" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -105,14 +90,14 @@ include('../app/controllers/categorias/listado_de_categoria.php');
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="">Usuario</label>
-                                                            <input type="text" class="form-control" value="<?php echo $user_sesion; ?>" disabled>
-                                                            <input type="text" name="id_usuario" value="<?php echo $id_usuario_sesion; ?>" hidden>
+                                                            <input type="text" class="form-control" value="<?php echo $email; ?>" disabled>
+                                                            <input type="text" name="id_usuario" value="<?php echo $id_usuario; ?>" hidden>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label for="">Descripción del Servicio:</label>
-                                                            <textarea name="descripcion" id="" cols="30" rows="2" class="form-control"></textarea>
+                                                            <textarea name="descripcion" id="" cols="30" rows="2" class="form-control"><?php echo $descripcion; ?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,7 +108,7 @@ include('../app/controllers/categorias/listado_de_categoria.php');
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="">Precio:</label>
-                                                            <input type="number" name="precio_venta" class="form-control" required>
+                                                            <input type="number" name="precio_venta" value="<?php echo $precio; ?>" class="form-control" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -132,7 +117,7 @@ include('../app/controllers/categorias/listado_de_categoria.php');
                                         <hr>
                                         <div class="form-group">
                                             <a href="index.php" class="btn btn-secondary">Cancelar</a>
-                                            <button type="submit" class="btn btn-primary">Guardar Servicio</button>
+                                            <button type="submit" class="btn btn-success">Actualizar producto</button>
                                         </div>
                                     </form>
                                 </div>
