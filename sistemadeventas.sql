@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-01-2025 a las 23:33:34
+-- Tiempo de generación: 25-01-2025 a las 19:46:41
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -61,6 +61,7 @@ CREATE TABLE `tb_almacen_servicios` (
   `codigo` varchar(50) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
   `precio_venta` varchar(50) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `fyh_creacion` datetime NOT NULL,
@@ -71,8 +72,8 @@ CREATE TABLE `tb_almacen_servicios` (
 -- Volcado de datos para la tabla `tb_almacen_servicios`
 --
 
-INSERT INTO `tb_almacen_servicios` (`id_servicio`, `codigo`, `id_categoria`, `nombre`, `precio_venta`, `id_usuario`, `fyh_creacion`, `fyh_update`) VALUES
-(1, '1', 8, 'Polarizado Americano', '150000', 1, '2025-01-22 23:12:26', '0000-00-00 00:00:00');
+INSERT INTO `tb_almacen_servicios` (`id_servicio`, `codigo`, `id_categoria`, `nombre`, `descripcion`, `precio_venta`, `id_usuario`, `fyh_creacion`, `fyh_update`) VALUES
+(2, 'S-00001', 8, 'Polarizado Americano', 'ewfwegfew', '150000', 1, '2025-01-24 21:24:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -179,7 +180,7 @@ CREATE TABLE `tb_clientes` (
 
 INSERT INTO `tb_clientes` (`id_cliente`, `ruc`, `dv`, `nombre_cliente`, `celular`, `email`, `direccion`, `descripcion_vehiculo`, `estado`, `id_usuario`, `fyh_creacion`, `fyh_update`) VALUES
 (2, '2216503', '7', 'Claro Villar', '0972728742', '', 'Ayolas', '', 1, 1, '2025-01-18 14:55:22', '0000-00-00 00:00:00'),
-(3, '165151', '', 'ddqw', '551561', '', 'dqwdqw', '', 1, 1, '2025-01-18 16:07:36', '0000-00-00 00:00:00'),
+(3, '165151', '', 'ddqw', '551561', '', 'dqwdqw', '', 1, 1, '2025-01-18 16:07:36', '2025-01-24 19:12:10'),
 (4, '4163797', '5', 'Lis Medina', '0972162163', '', 'Ayolas', '', 1, 1, '2025-01-20 23:51:43', '0000-00-00 00:00:00'),
 (6, '55555', '4', 'fqefw', '40808', 'wefd', 'deffefe', 'fewefe', 1, 2, '2025-01-21 20:14:42', '0000-00-00 00:00:00');
 
@@ -281,7 +282,7 @@ INSERT INTO `tb_roles` (`id_rol`, `rol`, `fyh_creacion`, `fyh_actualizacion`) VA
 (1, 'ADMINISTRADOR', '2023-01-23 23:15:19', '2023-01-23 23:15:19'),
 (3, 'GERENTE', '2023-01-23 19:11:28', '2023-01-23 20:13:35'),
 (4, 'VENDEDOR1', '2023-01-23 21:09:54', '0000-00-00 00:00:00'),
-(5, 'VENDEDOR2', '2023-01-24 08:28:24', '0000-00-00 00:00:00');
+(5, 'VENDEDOR2', '2023-01-24 08:28:24', '2025-01-24 21:32:52');
 
 -- --------------------------------------------------------
 
@@ -307,9 +308,9 @@ CREATE TABLE `tb_usuarios` (
 
 INSERT INTO `tb_usuarios` (`id_usuario`, `nombres`, `user`, `email`, `password_user`, `token`, `id_rol`, `fyh_creacion`, `fyh_actualizacion`) VALUES
 (1, 'Administrador', 'admin', 'admin@gmail.com', '$2y$10$VIDXuo4wKCt/x5BHkwHZAOw9lJNirjyLbBHPa9AA4/xgOW.91y/DG', '', 1, '2023-01-24 15:16:01', '2025-01-14 22:39:21'),
-(2, 'Micaela Bustamante', 'mica16', 'mica123@gmail.com', '$2y$10$YGHwKYeaClTn2q4evt0kZ.62EjyrNCTt39nr3iDckTd8Z5qk5RA2i', '', 3, '2025-01-10 20:07:45', '2025-01-22 22:42:34'),
+(2, 'Micaela Bustamante', 'mica16', 'mica16@gmail.com', '$2y$10$YGHwKYeaClTn2q4evt0kZ.62EjyrNCTt39nr3iDckTd8Z5qk5RA2i', '', 3, '2025-01-10 20:07:45', '2025-01-24 21:31:17'),
 (3, 'Carlos Duarte', 'carlitos19', '', '$2y$10$fzfGRUkRTwd1lj4338VYtOrDip4LReTMg7mOfa7syeDIixU4VjO5W', '', 4, '2025-01-22 22:30:11', '0000-00-00 00:00:00'),
-(4, 'Edgar Gonzalez', 'edgarcito12', '', '$2y$10$d.9sKPSkZTIxwKqVVTtleOFABqiCe9fq5RO9uAMVg6uBAzWC7SCW.', '', 5, '2025-01-22 22:50:40', '0000-00-00 00:00:00');
+(5, 'Arnaldo Gimenez', 'arnol12', '', '$2y$10$oT3GOxUyCkkYQlWxl1YMn.CqD/Y2.VGL/czWUQbgmpz4612ep97aC', '', 5, '2025-01-24 21:32:14', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -473,7 +474,7 @@ ALTER TABLE `tb_almacen`
 -- AUTO_INCREMENT de la tabla `tb_almacen_servicios`
 --
 ALTER TABLE `tb_almacen_servicios`
-  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_carrito`
@@ -485,7 +486,7 @@ ALTER TABLE `tb_carrito`
 -- AUTO_INCREMENT de la tabla `tb_carrito_servicios`
 --
 ALTER TABLE `tb_carrito_servicios`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_categorias`
@@ -527,7 +528,7 @@ ALTER TABLE `tb_roles`
 -- AUTO_INCREMENT de la tabla `tb_usuarios`
 --
 ALTER TABLE `tb_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_ventas`
