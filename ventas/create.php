@@ -499,7 +499,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="">Monto a Pagar: </label>
-                                <input type="text" class="form-control" id="total_a_pagar" style="text-align: center; background-color: yellow;" value="<?php echo number_format($precio_total, 0, ',', '.'); ?>" disabled>
+                                <input type="text" class="form-control" id="total_a_pagar" style="text-align: center; background-color: yellow; font-weight: bold;" value="<?php echo number_format($precio_total, 0, ',', '.'); ?>" disabled>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -766,7 +766,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Descripción de Vehículo</label>
                                 <input type="text" name="descripcion_vehiculo" id="descripcion_vehiculo" class="form-control">

@@ -107,7 +107,6 @@ include('../app/controllers/servicios/cargar_servicio.php');
                                     <div class="form-group">
                                         <a href="index.php" class="btn btn-secondary">Cancelar</a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
