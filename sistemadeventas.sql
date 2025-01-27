@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-01-2025 a las 19:46:41
+-- Tiempo de generación: 27-01-2025 a las 03:35:31
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -168,7 +168,6 @@ CREATE TABLE `tb_clientes` (
   `email` varchar(100) NOT NULL,
   `direccion` varchar(80) NOT NULL,
   `descripcion_vehiculo` varchar(150) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1,
   `id_usuario` int(11) NOT NULL,
   `fyh_creacion` datetime NOT NULL,
   `fyh_update` datetime NOT NULL
@@ -178,11 +177,11 @@ CREATE TABLE `tb_clientes` (
 -- Volcado de datos para la tabla `tb_clientes`
 --
 
-INSERT INTO `tb_clientes` (`id_cliente`, `ruc`, `dv`, `nombre_cliente`, `celular`, `email`, `direccion`, `descripcion_vehiculo`, `estado`, `id_usuario`, `fyh_creacion`, `fyh_update`) VALUES
-(2, '2216503', '7', 'Claro Villar', '0972728742', '', 'Ayolas', '', 1, 1, '2025-01-18 14:55:22', '0000-00-00 00:00:00'),
-(3, '165151', '', 'ddqw', '551561', '', 'dqwdqw', '', 1, 1, '2025-01-18 16:07:36', '2025-01-24 19:12:10'),
-(4, '4163797', '5', 'Lis Medina', '0972162163', '', 'Ayolas', '', 1, 1, '2025-01-20 23:51:43', '0000-00-00 00:00:00'),
-(6, '55555', '4', 'fqefw', '40808', 'wefd', 'deffefe', 'fewefe', 1, 2, '2025-01-21 20:14:42', '0000-00-00 00:00:00');
+INSERT INTO `tb_clientes` (`id_cliente`, `ruc`, `dv`, `nombre_cliente`, `celular`, `email`, `direccion`, `descripcion_vehiculo`, `id_usuario`, `fyh_creacion`, `fyh_update`) VALUES
+(2, '2216503', '7', 'Claro Villar', '0972728742', '', 'Ayolas', '', 1, '2025-01-18 14:55:22', '0000-00-00 00:00:00'),
+(3, '165151', '', 'ddqw', '551561', '', 'dqwdqw', '', 1, '2025-01-18 16:07:36', '2025-01-24 19:12:10'),
+(4, '4163797', '5', 'Lis Medina', '0972162163', '', 'Ayolas', '', 1, '2025-01-20 23:51:43', '0000-00-00 00:00:00'),
+(6, '55555', '', 'fqefw', '40808', 'wefd', 'deffefe', 'fewefe', 2, '2025-01-21 20:14:42', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -323,6 +322,8 @@ CREATE TABLE `tb_ventas` (
   `nro_venta` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `total_pagado` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
   `fyh_creacion` datetime NOT NULL,
   `fyh_update` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -331,11 +332,11 @@ CREATE TABLE `tb_ventas` (
 -- Volcado de datos para la tabla `tb_ventas`
 --
 
-INSERT INTO `tb_ventas` (`id_venta`, `nro_venta`, `id_cliente`, `total_pagado`, `fyh_creacion`, `fyh_update`) VALUES
-(1, 1, 2, 104, '2025-01-21 20:41:39', '0000-00-00 00:00:00'),
-(2, 2, 4, 5, '2025-01-21 20:45:10', '0000-00-00 00:00:00'),
-(3, 3, 6, 12000, '2025-01-21 20:52:39', '0000-00-00 00:00:00'),
-(5, 4, 2, 4240000, '2025-01-22 18:33:52', '0000-00-00 00:00:00');
+INSERT INTO `tb_ventas` (`id_venta`, `nro_venta`, `id_cliente`, `total_pagado`, `id_usuario`, `estado`, `fyh_creacion`, `fyh_update`) VALUES
+(1, 1, 2, 104000, 1, 1, '2025-01-21 20:41:39', '0000-00-00 00:00:00'),
+(2, 2, 4, 5000, 1, 1, '2025-01-21 20:45:10', '0000-00-00 00:00:00'),
+(3, 3, 6, 12000, 2, 2, '2025-01-21 20:52:39', '0000-00-00 00:00:00'),
+(5, 4, 2, 4240000, 3, 2, '2025-01-22 18:33:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -450,7 +451,8 @@ ALTER TABLE `tb_usuarios`
 ALTER TABLE `tb_ventas`
   ADD PRIMARY KEY (`id_venta`) USING BTREE,
   ADD KEY `id_cliente` (`id_cliente`),
-  ADD KEY `nro_venta` (`nro_venta`);
+  ADD KEY `nro_venta` (`nro_venta`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `tb_ventas_servicios`
@@ -591,5 +593,6 @@ ALTER TABLE `tb_usuarios`
 --
 ALTER TABLE `tb_ventas`
   ADD CONSTRAINT `tb_ventas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes` (`id_cliente`),
-  ADD CONSTRAINT `tb_ventas_ibfk_2` FOREIGN KEY (`nro_venta`) REFERENCES `tb_carrito` (`nro_venta`);
+  ADD CONSTRAINT `tb_ventas_ibfk_2` FOREIGN KEY (`nro_venta`) REFERENCES `tb_carrito` (`nro_venta`),
+  ADD CONSTRAINT `tb_ventas_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`);
 COMMIT;
