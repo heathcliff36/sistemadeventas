@@ -17,12 +17,21 @@ include('../app/controllers/clientes/cargar_cliente.php');
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                     <h1 class="m-0"><b>Detalle de la Venta N° <?= $nro_venta; ?>, en fecha <?= $fecha; ?></b></h1>
                 </div><!-- /.col -->
                 <div class="col-sm-2">
-                    <a href="index.php" class="btn btn-secondary btn-block"><i class="fa fa-arrow-left"></i> Volver</a>
+                    <a href="index.php" class="btn btn-secondary btn-block"><i class="fa fa-arrow-left"></i> Cancelar</a>
                 </div>
+                <div class="col-sm-2">
+                    <button id="btn_anular_venta" class="btn btn-danger btn-block"><i class="fa fa-ban"></i> Anular Venta</button>
+                </div>
+                <script>
+                    $('#btn_anular_venta').click(function() {
+                        var id_venta = '<?php echo $id_venta_get; ?>';
+                        alert(id_venta);
+                    })
+                </script>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -35,7 +44,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-outline card-primary">
+                    <div class="card card-outline card-danger">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fa fa-shopping-bag"></i> Venta Nro
                                 <input type="text" style="text-align: center;" value="<?php echo $nro_venta; ?>" disabled>
@@ -137,7 +146,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
 
             <div class="row">
                 <div class="col-md-9">
-                    <div class="card card-outline card-primary">
+                    <div class="card card-outline card-danger">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fa fa-user-check"></i> Datos del Cliente</h3>
                             <div class="card-tools">
@@ -201,7 +210,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                 </div>
 
                 <div class="col-md-3">
-                    <div class="card card-outline card-primary">
+                    <div class="card card-outline card-danger">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Registrar Venta</h3>
                             <div class="card-tools">
@@ -221,9 +230,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                     </div>
                 </div>
             </div>
-
             <!-- /.row -->
-
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

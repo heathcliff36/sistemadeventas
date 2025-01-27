@@ -9,7 +9,10 @@ include('app/controllers/categorias/listado_de_categoria.php');
 include('app/controllers/almacen/listado_de_productos.php');
 include('app/controllers/proveedores/listado_de_proveedores.php');
 include('app/controllers/clientes/listado_de_clientes.php');
+include('app/controllers/compras/listado_de_compras.php');
 include('app/controllers/ventas/listado_de_ventas.php');
+include('app/controllers/servicios/listado_de_servicios.php');
+include('app/controllers/ventser/listado_de_ventser.php');
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -184,28 +187,25 @@ include('app/controllers/ventas/listado_de_ventas.php');
                     </div>
                 </div>
 
-
-
-
                 <?php if (($rol_sesion == "ADMINISTRADOR") || ($rol_sesion == "GERENTE") || ($rol_sesion == "VENDEDOR1")) { ?>
                     <div class="col-lg-3 col-6">
                         <div class="small-box" style="background-Color: #5E81AC; color: #000;">
                             <div class="inner">
                                 <?php
-                                $contador_de_proveedores = 0;
-                                foreach ($proveedores_datos as $proveedores_dato) {
-                                    $contador_de_proveedores++;
+                                $contador_de_compras = 0;
+                                foreach ($compras_datos as $compras_dato) {
+                                    $contador_de_compras++;
                                 }
                                 ?>
-                                <h3><?php echo $contador_de_proveedores; ?></h3>
+                                <h3><?php echo $contador_de_compras; ?></h3>
                                 <p>Compras Registradas</p>
                             </div>
-                            <a href="<?php echo $URL; ?>/proveedores">
+                            <a href="<?php echo $URL; ?>/compras/create.php">
                                 <div class="icon">
                                     <i class="fas fa-cart-plus" style="color: #000;"></i> <!-- Ícono en NEGRO para contraste -->
                                 </div>
                             </a>
-                            <a href="<?php echo $URL; ?>/proveedores" class="small-box-footer" style="color: #000;">
+                            <a href="<?php echo $URL; ?>/compras" class="small-box-footer" style="color: #000;">
                                 Más detalle <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -223,12 +223,12 @@ include('app/controllers/ventas/listado_de_ventas.php');
                                 <h3><?php echo $contador_de_ventas; ?></h3>
                                 <p>Ventas Registradas</p>
                             </div>
-                            <a href="<?php echo $URL; ?>/proveedores">
+                            <a href="<?php echo $URL; ?>/ventas/create.php">
                                 <div class="icon">
                                     <i class="fas fa-hand-holding-usd" style="color: #000;"></i> <!-- Ícono en NEGRO para contraste -->
                                 </div>
                             </a>
-                            <a href="<?php echo $URL; ?>/proveedores" class="small-box-footer" style="color: #000;">
+                            <a href="<?php echo $URL; ?>/ventas" class="small-box-footer" style="color: #000;">
                                 Más detalle <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -241,19 +241,42 @@ include('app/controllers/ventas/listado_de_ventas.php');
                             <div class="inner">
                                 <?php
                                 $contador_de_servicios = 0;
-                                foreach ($proveedores_datos as $proveedores_dato) {
+                                foreach ($servicios_datos as $servicios_dato) {
                                     $contador_de_servicios++;
                                 }
                                 ?>
                                 <h3><?php echo $contador_de_servicios; ?></h3>
                                 <p>Servicios Registrados</p>
                             </div>
-                            <a href="<?php echo $URL; ?>/proveedores">
+                            <a href="<?php echo $URL; ?>/servicios/create.php">
                                 <div class="icon">
                                     <i class="fas fa-car" style="color: #000;"></i> <!-- Ícono en NEGRO para mejor visibilidad -->
                                 </div>
                             </a>
-                            <a href="<?php echo $URL; ?>/proveedores" class="small-box-footer" style="color: #000;">
+                            <a href="<?php echo $URL; ?>/servicios" class="small-box-footer" style="color: #000;">
+                                Más detalle <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box" style="background-Color: #6A90CA  ; color: #000;">
+                            <div class="inner">
+                                <?php
+                                $contador_de_ventser = 0;
+                                foreach ($ventser_datos as $ventser_dato) {
+                                    $contador_de_ventser++;
+                                }
+                                ?>
+                                <h3><?php echo $contador_de_ventser; ?></h3>
+                                <p>Servicios Realizados</p>
+                            </div>
+                            <a href="<?php echo $URL; ?>/servicios/ventser.php">
+                                <div class="icon">
+                                    <i class="fas fa-car" style="color: #000;"></i> <!-- Ícono en NEGRO para mejor visibilidad -->
+                                </div>
+                            </a>
+                            <a href="<?php echo $URL; ?>/servicios/listado_ventser.php" class="small-box-footer" style="color: #000;">
                                 Más detalle <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
