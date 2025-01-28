@@ -267,7 +267,11 @@ include('../app/controllers/ventas/listado_de_ventas.php');
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label for="">Celular</label>
-                                                                                        <input type="number" style="text-align: center;" value="<?php echo $celular; ?>" class="form-control" disabled>
+                                                                                        <br>
+                                                                                        <a href="https://wa.me/+595<?php echo $celular; ?>" target="_blank" class="btn btn-success btn-block">
+                                                                                            <i class="fa fa-phone"></i>
+                                                                                            <?php echo $celular; ?>
+                                                                                        </a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

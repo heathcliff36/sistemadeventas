@@ -25,11 +25,20 @@ include('../app/controllers/clientes/cargar_cliente.php');
                 </div>
                 <div class="col-sm-2">
                     <button id="btn_anular_venta" class="btn btn-danger btn-block"><i class="fa fa-ban"></i> Anular Venta</button>
+                    <div id="btn_anular_venta"></div>
                 </div>
                 <script>
                     $('#btn_anular_venta').click(function() {
                         var id_venta = '<?php echo $id_venta_get; ?>';
-                        alert(id_venta);
+
+                        var url = "../app/controllers/ventas/anular_venta.php";
+                        $.get(url, {
+                            id_venta:id_venta,
+                        }, function(datos) {
+                            $('#btn_anular_venta').html(datos);
+                        });
+
+                        //alert(id_venta);
                     })
                 </script>
             </div><!-- /.row -->
@@ -218,9 +227,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                     <i class="fas fa-minus"></i>
                                 </button>
                             </div>
-
                         </div>
-
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="">Monto a Pagar: </label>
@@ -231,7 +238,8 @@ include('../app/controllers/clientes/cargar_cliente.php');
                 </div>
             </div>
             <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.container-fluid -->
     </div>
     <!-- /.content -->
 </div>
