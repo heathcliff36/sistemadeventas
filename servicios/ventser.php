@@ -457,7 +457,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                 <div class="col-md-3">
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Registrar Venta</h3>
+                            <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Servicio Realizado</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -528,7 +528,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                             </div>
                             <hr>
                             <div class="form-group">
-                                <button id="btn_guardar_venta" class="btn btn-primary btn-block"> Registrar Venta</button>
+                                <button id="btn_guardar_venta" class="btn btn-primary btn-block"> Registrar Servicio</button>
                                 <div id="respuesta_ventser"></div>
                                 <script>
                                     // Función para eliminar puntos de un número formateado
@@ -655,7 +655,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                 </button>
             </div>
             <div class="modal-body">
-                <form action="../app/controllers/clientes/guardar_clientes.php" method="post">
+                <form action="../app/controllers/clientes/guardar_clientes_ventser.php" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

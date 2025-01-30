@@ -27,20 +27,6 @@ include('../app/controllers/clientes/cargar_cliente.php');
                     <button id="btn_anular_venta" class="btn btn-danger btn-block"><i class="fa fa-ban"></i> Anular Venta</button>
                     <div id="btn_anular_venta"></div>
                 </div>
-                <script>
-                    $('#btn_anular_venta').click(function() {
-                        var id_venta = '<?php echo $id_venta_get; ?>';
-
-                        var url = "../app/controllers/ventas/anular_venta.php";
-                        $.get(url, {
-                            id_venta:id_venta,
-                        }, function(datos) {
-                            $('#btn_anular_venta').html(datos);
-                        });
-
-                        //alert(id_venta);
-                    })
-                </script>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -87,7 +73,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                         $precio_total = 0;
 
                                         $sql_carrito = "SELECT *, p.nombre AS n_producto, p.descripcion AS descripcion, 
-                                                        p.precio_venta AS p_unitario, p.stock AS stock
+                                                        p.precio_venta AS p_unitario, p.stock AS stock, c.estatus AS estatus
                                                         FROM tb_carrito AS c 
                                                         INNER JOIN tb_almacen AS p ON c.id_producto = p.id_producto
                                                         WHERE nro_venta = '$nro_venta' ORDER BY id_carrito ASC";
@@ -221,7 +207,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                 <div class="col-md-3">
                     <div class="card card-outline card-danger">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Registrar Venta</h3>
+                            <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Anular Venta</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -233,6 +219,52 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                 <label for="">Monto a Pagar: </label>
                                 <input type="text" class="form-control" id="total_a_pagar" style="text-align: center; background-color: yellow; font-weight: bold;" value="<?php echo number_format($precio_total, 0, ',', '.'); ?>" disabled>
                             </div>
+                            <script>
+                                $('#btn_anular_venta').click(function() {
+
+                                    var id_venta = '<?php echo $id_venta_get; ?>';
+                                    actualizar_stock();
+
+                                    function actualizar_stock() {
+
+                                        var i = 1;
+                                        var n = '<?php echo $contador_de_carrito; ?>';
+
+                                        for (i = 1; i <= n; i++) {
+                                            var a = '#stock_actual' + i;
+                                            var stock_actual = $(a).val();
+
+                                            var b = '#cantidad_carrito' + i;
+                                            var cantidad_carrito = $(b).html();
+
+                                            var c = '#id_producto' + i;
+                                            var id_producto = $(c).val();
+
+                                            var stock_final = parseFloat(parseInt(stock_actual) + parseInt(cantidad_carrito));
+
+                                            //alert(id_producto + " - " + stock_actual + " + " + cantidad_carrito + " = " + stock_final)
+
+                                            var url2 = "../app/controllers/ventas/update_stock.php";
+                                            $.get(url2, {
+                                                id_producto: id_producto,
+                                                stock_final: stock_final,
+                                            }, function(datos) {
+
+                                            });
+                                        }
+
+                                    }
+
+                                    function anular_venta() {
+                                        var url = "../app/controllers/ventas/anular_venta.php";
+                                        $.get(url, {
+                                            id_venta: id_venta,
+                                        }, function(datos) {
+                                            $('#btn_anular_venta').html(datos);
+                                        });
+                                    }
+                                })
+                            </script>
                         </div>
                     </div>
                 </div>

@@ -106,7 +106,11 @@ include('../app/controllers/ventas/listado_de_ventas.php');
                                                                 <div class="modal-dialog modal-lg" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header" style="background-color: #08c2ec;">
-                                                                            <h5 class="modal-title fs-5" id="exampleModalLabel"><b>Productos de la venta N° <?php echo $ventas_dato['nro_venta']; ?></b></h5>
+                                                                            <?php if ($ventas_dato['estado'] == 1) { ?>
+                                                                                <h5 class="modal-title fs-5" id="exampleModalLabel"><b>Productos de la venta N° <?php echo $ventas_dato['nro_venta']; ?></b></h5>
+                                                                            <?php } else { ?>
+                                                                                <h5 class="modal-title fs-5" id="exampleModalLabel"><b>Productos de la venta N° <?php echo $ventas_dato['nro_venta']; ?> - <span style="color: red;">ANULADO</span></b></h5>
+                                                                            <?php } ?>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
@@ -133,7 +137,7 @@ include('../app/controllers/ventas/listado_de_ventas.php');
 
                                                                                         $nro_venta = $ventas_dato['nro_venta'];
 
-                                                                                        $sql_carrito = "SELECT *, p.nombre AS n_producto, p.descripcion AS descripcion, p.precio_venta AS p_unitario, p.stock AS stock
+                                                                                        $sql_carrito = "SELECT *, p.nombre AS n_producto, p.descripcion AS descripcion, p.precio_venta AS p_unitario, p.stock AS stock, c.estatus AS estatus
                                                                                                     FROM tb_carrito AS c 
                                                                                                     INNER JOIN tb_almacen AS p ON c.id_producto = p.id_producto
                                                                                                     WHERE nro_venta = '$nro_venta' ORDER BY id_carrito ASC";
@@ -147,6 +151,7 @@ include('../app/controllers/ventas/listado_de_ventas.php');
                                                                                             $contador_de_carrito = $contador_de_carrito + 1;
                                                                                             $cantidad_total = $cantidad_total + $carrito_dato['cantidad'];
                                                                                             $p_uni_total = $p_uni_total + floatval($carrito_dato['precio_venta']);
+                                                                                            $estatus = $carrito_dato['estatus'];
 
                                                                                         ?>
                                                                                             <tr>

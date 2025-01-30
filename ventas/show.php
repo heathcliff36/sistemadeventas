@@ -18,7 +18,11 @@ include('../app/controllers/clientes/cargar_cliente.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-10">
-                    <h1 class="m-0"><b>Detalle de la Venta N° <?= $nro_venta; ?>, en fecha <?= $fecha; ?></b></h1>
+                    <?php if ($estado == 1) { ?>
+                        <h1 class="m-0"><b>Detalle de la Venta N° <?= $nro_venta; ?>, en fecha <?= $fecha; ?></b></h1>
+                    <?php } else { ?>
+                        <h1 class="m-0"><b>Detalle de la Venta N° <?= $nro_venta; ?>, en fecha <?= $fecha; ?> - <span style="color: red;">ANULADO</span></b></h1>
+                    <?php } ?>
                 </div><!-- /.col -->
                 <div class="col-sm-2">
                     <a href="index.php" class="btn btn-secondary btn-block"><i class="fa fa-arrow-left"></i> Volver</a>

@@ -178,7 +178,7 @@ include('app/controllers/ventser/listado_de_ventser.php');
                         </div>
                         <a href="<?php echo $URL; ?>/clientes">
                             <div class="icon">
-                                <i class="fas fa-id-badge" style="color: #000;"></i>
+                                <i class="fas fa-user-tag" style="color: #000;"></i>
                             </div>
                         </a>
                         <a href="<?php echo $URL; ?>/clientes" class="small-box-footer" style="color: #000;">
@@ -198,7 +198,7 @@ include('app/controllers/ventser/listado_de_ventser.php');
                                 }
                                 ?>
                                 <h3><?php echo $contador_de_compras; ?></h3>
-                                <p>Compras Registradas</p>
+                                <p>Compras Realizadas</p>
                             </div>
                             <a href="<?php echo $URL; ?>/compras/create.php">
                                 <div class="icon">
@@ -221,7 +221,7 @@ include('app/controllers/ventser/listado_de_ventser.php');
                                 }
                                 ?>
                                 <h3><?php echo $contador_de_ventas; ?></h3>
-                                <p>Ventas Registradas</p>
+                                <p>Ventas Realizadas</p>
                             </div>
                             <a href="<?php echo $URL; ?>/ventas/create.php">
                                 <div class="icon">
@@ -250,7 +250,7 @@ include('app/controllers/ventser/listado_de_ventser.php');
                             </div>
                             <a href="<?php echo $URL; ?>/servicios/create.php">
                                 <div class="icon">
-                                    <i class="fas fa-car" style="color: #000;"></i> <!-- Ícono en NEGRO para mejor visibilidad -->
+                                    <i class="fas fa-car-side" style="color: #000;"></i> <!-- Ícono en NEGRO para mejor visibilidad -->
                                 </div>
                             </a>
                             <a href="<?php echo $URL; ?>/servicios" class="small-box-footer" style="color: #000;">
@@ -260,7 +260,7 @@ include('app/controllers/ventser/listado_de_ventser.php');
                     </div>
 
                     <div class="col-lg-3 col-6">
-                        <div class="small-box" style="background-Color: #6A90CA  ; color: #000;">
+                        <div class="small-box" style="background-Color: #5172A3  ; color: #000;">
                             <div class="inner">
                                 <?php
                                 $contador_de_ventser = 0;
