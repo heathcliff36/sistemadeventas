@@ -345,7 +345,10 @@ include('../app/controllers/ventas/listado_de_ventas.php');
                                                     <td>
                                                         <center>
                                                             <a href="show.php?id_venta=<?php echo $id_venta; ?>" class="btn btn-info"><i class="fa fa-eye"></i> Ver</a>
-                                                            <a href="delete.php?id_venta=<?php echo $id_venta; ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Borrar</a>
+                                                            <?php if ($ventas_dato['estado'] == 1) { ?>
+                                                                <a href="delete.php?id_venta=<?php echo $id_venta; ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Borrar</a>
+                                                            <?php } else {
+                                                            } ?>
                                                         </center>
                                                     </td>
                                                 </tr>
