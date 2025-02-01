@@ -89,7 +89,13 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                 <center><?php echo $contador = $contador + 1; ?></center>
                                             </td>
                                             <td><?php echo $clientes_dato['ruc']; ?></td>
-                                            <td><?php echo $clientes_dato['dv']; ?></td>
+                                            <?php if (empty($clientes_dato['dv'])) { ?>
+                                                <td>
+                                                    <p>-</p>
+                                                </td>
+                                            <?php } else { ?>
+                                                <td><?php echo $clientes_dato['dv']; ?></td>
+                                            <?php } ?>
                                             <td><?php echo $nombre_cliente; ?></td>
                                             <td>
                                                 <a href="https://wa.me/+595<?php echo $clientes_dato['celular']; ?>" target="_blank" class="btn btn-success">
@@ -246,8 +252,6 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                                                     </script>
                                                 </div>
 
-
-
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                                         data-target="#modal-delete<?php echo $id_cliente; ?>">
@@ -388,7 +392,7 @@ include('../app/controllers/clientes/listado_de_clientes.php');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">RUC <b>*</b></label>
+                            <label for="">RUC/C.I. <b>*</b></label>
                             <input type="number" id="ruc" class="form-control">
                             <small style="color: red;display: none" id="lbl_ruc">* Este campo es requerido</small>
                         </div>

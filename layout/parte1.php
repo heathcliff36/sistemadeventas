@@ -195,6 +195,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <p>Facturación de Servicios</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo $URL; ?>/servicios/listado_ventser.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Servicios Realizados</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         <?php } ?>

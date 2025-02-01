@@ -23,10 +23,11 @@ include('../app/controllers/clientes/cargar_cliente.php');
                     <?php } else { ?>
                         <h1 class="m-0"><b>Detalle de la Venta N° <?= $nro_venta; ?>, en fecha <?= $fecha; ?> - <span style="color: red;">ANULADO</span></b></h1>
                     <?php } ?>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-2">
                     <a href="index.php" class="btn btn-secondary btn-block"><i class="fa fa-arrow-left"></i> Volver</a>
                 </div>
+                <!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>

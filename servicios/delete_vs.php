@@ -1,14 +1,13 @@
 <?php
-
-$id_venta_get = $_GET['id_venta'];
-$nro_venta_get = $_GET['nro_venta'];
+$id_ventser_get = $_GET['id_vs'];
+$nro_servicio_get = $_GET['nro_servicio'];
 
 include('../app/config.php');
 include('../layout/sesion.php');
 
 include('../layout/parte1.php');
 
-include('../app/controllers/ventas/cargar_venta.php');
+include('../app/controllers/ventser/cargar_ventser.php');
 include('../app/controllers/clientes/cargar_cliente.php');
 ?>
 
@@ -19,14 +18,14 @@ include('../app/controllers/clientes/cargar_cliente.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-8">
-                    <h1 class="m-0"><b>Detalle de la Venta N° <?= $nro_venta; ?>, en fecha <?= $fecha; ?></b></h1>
+                    <h1 class="m-0"><b>Detalle del Servicio N° <?= $nro_servicio; ?>, en fecha <?= $fecha; ?></b></h1>
                 </div>
                 <div class="col-sm-2">
-                    <a href="index.php" class="btn btn-secondary btn-block"><i class="fa fa-arrow-left"></i> Cancelar</a>
+                    <a href="listado_ventser.php" class="btn btn-secondary btn-block"><i class="fa fa-arrow-left"></i> Volver</a>
                 </div>
                 <div class="col-sm-2">
-                    <button id="btn_anular_venta" class="btn btn-danger btn-block"><i class="fa fa-ban"></i> Anular Venta</button>
-                    <div id="btn_anular_venta"></div>
+                    <button id="btn_anular_ventser" class="btn btn-danger btn-block"><i class="fa fa-ban"></i> Anular Venta</button>
+                    <div id="btn_anular_ventser"></div>
                 </div>
                 <!-- /.col -->
             </div><!-- /.row -->
@@ -43,8 +42,8 @@ include('../app/controllers/clientes/cargar_cliente.php');
                 <div class="col-md-12">
                     <div class="card card-outline card-danger">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fa fa-shopping-bag"></i> Venta Nro
-                                <input type="text" style="text-align: center;" value="<?php echo $nro_venta; ?>" disabled>
+                            <h3 class="card-title"><i class="fa fa-shopping-bag"></i> Servicio Nro
+                                <input type="text" style="text-align: center;" value="<?php echo $nro_servicio; ?>" disabled>
                             </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -60,8 +59,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                     <thead>
                                         <tr>
                                             <th style="background-color: #e7e7e7; text-align:center">Nro</th>
-                                            <th style="background-color: #e7e7e7; text-align:center">Producto</th>
-                                            <th style="background-color: #e7e7e7; text-align:center">Descripción</th>
+                                            <th style="background-color: #e7e7e7; text-align:center">Servicio</th>
                                             <th style="background-color: #e7e7e7; text-align:center">Cantidad</th>
                                             <th style="background-color: #e7e7e7; text-align:center">Precio Unitario</th>
                                             <th style="background-color: #e7e7e7; text-align:center">Precio SubTotal</th>
@@ -74,11 +72,10 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                         $p_uni_total = 0;
                                         $precio_total = 0;
 
-                                        $sql_carrito = "SELECT *, p.nombre AS n_producto, p.descripcion AS descripcion, 
-                                                        p.precio_venta AS p_unitario, p.stock AS stock, c.estatus AS estatus
-                                                        FROM tb_carrito AS c 
-                                                        INNER JOIN tb_almacen AS p ON c.id_producto = p.id_producto
-                                                        WHERE nro_venta = '$nro_venta' ORDER BY id_carrito ASC";
+                                        $sql_carrito = "SELECT *, s.nombre AS n_servicio, s.precio_venta AS p_unitario
+                                        FROM tb_carrito_servicios AS c 
+                                        INNER JOIN tb_almacen_servicios AS s ON c.id_servicio = s.id_servicio
+                                        WHERE nro_servicio = '$nro_servicio' ORDER BY id_carrito ASC";
                                         $query_carrito = $pdo->prepare($sql_carrito);
                                         $query_carrito->execute();
                                         $carrito_datos = $query_carrito->fetchAll(PDO::FETCH_ASSOC);
@@ -94,12 +91,10 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                             <tr>
                                                 <td>
                                                     <center><?php echo $contador_de_carrito; ?></center>
-                                                    <input type="text" value="<?php echo $carrito_dato['id_producto']; ?>" id="id_producto<?php echo $contador_de_carrito; ?>" hidden>
-                                                <td><?php echo $carrito_dato['n_producto']; ?></td>
-                                                <td><?php echo $carrito_dato['descripcion']; ?></td>
+                                                    <input type="text" value="<?php echo $carrito_dato['id_servicio']; ?>" id="id_servicio<?php echo $contador_de_carrito; ?>" hidden>
+                                                <td><?php echo $carrito_dato['n_servicio']; ?></td>
                                                 <td>
                                                     <center><span id="cantidad_carrito<?php echo $contador_de_carrito; ?>"><?php echo $carrito_dato['cantidad']; ?></span></center>
-                                                    <input type="text" value="<?php echo $carrito_dato['stock']; ?>" id="stock_actual<?php echo $contador_de_carrito; ?>" hidden>
                                                 </td>
                                                 <td>
                                                     <center><?php echo $carrito_dato['p_unitario']; ?></center>
@@ -121,7 +116,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                         }
                                         ?>
                                         <tr>
-                                            <th colspan="3" style="background-color: #e7e7e7; text-align:right">Total</th>
+                                            <th colspan="2" style="background-color: #e7e7e7; text-align:right">Total</th>
                                             <th>
                                                 <center><?php echo $cantidad_total; ?></center>
                                             </th>
@@ -152,7 +147,6 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                 </button>
                             </div>
                         </div>
-
                         <?php
                         foreach ($clientes_datos as $clientes_dato) {
                             $ruc = $clientes_dato['ruc'];
@@ -160,9 +154,9 @@ include('../app/controllers/clientes/cargar_cliente.php');
                             $cliente = $clientes_dato['nombre_cliente'];
                             $celular = $clientes_dato['celular'];
                             $direccion = $clientes_dato['direccion'];
+                            $vehiculo = $clientes_dato['descripcion_vehiculo'];
                         }
                         ?>
-
                         <div class="card-body">
                             <div class="container-fluid" style="font-size: 12px">
                                 <div class="row">
@@ -187,16 +181,14 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="">Teléfono </label>
-                                            <input type="text" value="<?= $celular; ?>" class="form-control" disabled>
+                                            <label for="">Dirección</label>
+                                            <textarea name="" id="direccion" cols="30" rows="3" class="form-control" disabled><?= $direccion; ?></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="">Dirección</label>
-                                            <input type="text" value="<?= $direccion; ?>" class="form-control" disabled>
-                                            <!-- <textarea name="" cols="30" rows="3" class="form-control" disabled><?php //$direccion; 
-                                                                                                                    ?></textarea> -->
+                                            <label for="">Vehiculo </label>
+                                            <textarea name="" id="vehiculo" cols="30" rows="3" class="form-control" disabled><?= $vehiculo; ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -209,63 +201,34 @@ include('../app/controllers/clientes/cargar_cliente.php');
                 <div class="col-md-3">
                     <div class="card card-outline card-danger">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Anular Venta</h3>
+                            <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Servicio Realizado</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
                             </div>
+
                         </div>
+
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="">Monto a Pagar: </label>
                                 <input type="text" class="form-control" id="total_a_pagar" style="text-align: center; background-color: yellow; font-weight: bold;" value="<?php echo number_format($precio_total, 0, ',', '.'); ?>" disabled>
                             </div>
                             <script>
-                                $('#btn_anular_venta').click(function() {
+                                $('#btn_anular_ventser').click(function() {
 
-                                    var id_venta = '<?php echo $id_venta_get; ?>';
-                                    var nro_venta = '<?php echo $nro_venta_get; ?>';
-                                    actualizar_stock();
+                                    var id_vs = '<?php echo $id_ventser_get; ?>';
+                                    var nro_servicio = '<?php echo $nro_servicio_get; ?>';
                                     anular_venta();
 
-                                    function actualizar_stock() {
-
-                                        var i = 1;
-                                        var n = '<?php echo $contador_de_carrito; ?>';
-
-                                        for (i = 1; i <= n; i++) {
-                                            var a = '#stock_actual' + i;
-                                            var stock_actual = $(a).val();
-
-                                            var b = '#cantidad_carrito' + i;
-                                            var cantidad_carrito = $(b).html();
-
-                                            var c = '#id_producto' + i;
-                                            var id_producto = $(c).val();
-
-                                            var stock_final = parseFloat(parseInt(stock_actual) + parseInt(cantidad_carrito));
-
-                                            //alert(id_producto + " - " + stock_actual + " + " + cantidad_carrito + " = " + stock_final)
-
-                                            var url2 = "../app/controllers/ventas/update_stock.php";
-                                            $.get(url2, {
-                                                id_producto: id_producto,
-                                                stock_final: stock_final,
-                                            }, function(datos) {
-
-                                            });
-                                        }
-
-                                    }
-
                                     function anular_venta() {
-                                        var url = "../app/controllers/ventas/anular_venta.php";
+                                        var url = "../app/controllers/ventser/anular_ventser.php";
                                         $.get(url, {
-                                            id_venta: id_venta,
-                                            nro_venta: nro_venta,
+                                            id_vs: id_vs,
+                                            nro_servicio: nro_servicio,
                                         }, function(datos) {
-                                            $('#btn_anular_venta').html(datos);
+                                            $('#btn_anular_ventser').html(datos);
                                         });
                                     }
                                 })
@@ -274,9 +237,10 @@ include('../app/controllers/clientes/cargar_cliente.php');
                     </div>
                 </div>
             </div>
+
             <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+
+        </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
 </div>
