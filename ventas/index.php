@@ -13,9 +13,12 @@ include('../app/controllers/ventas/listado_de_ventas.php');
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12">
+                <div class="col-sm-10">
                     <h1 class="m-0">Listado de Ventas Realizadas</h1>
                 </div><!-- /.col -->
+                <div class="col-sm-2">
+                    <a href="create.php" class="btn btn-primary btn-block"><i class="fa fa-cash-register"></i> Realizar Venta</a>
+                </div>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -346,7 +349,7 @@ include('../app/controllers/ventas/listado_de_ventas.php');
                                                         <center>
                                                             <a href="show.php?id_venta=<?php echo $id_venta; ?>" class="btn btn-info"><i class="fa fa-eye"></i> Ver</a>
                                                             <?php if ($ventas_dato['estado'] == 1) { ?>
-                                                                <a href="delete.php?id_venta=<?php echo $id_venta; ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Borrar</a>
+                                                                <a href="delete.php?id_venta=<?php echo $id_venta; ?>&nro_venta=<?php echo $nro_venta; ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Anular</a>
                                                             <?php } else {
                                                             } ?>
                                                         </center>

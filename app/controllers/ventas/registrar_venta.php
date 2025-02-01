@@ -33,7 +33,7 @@ if ($sentencia->execute()) {
     // header('Location: '.$URL.'/categorias/');
 ?>
     <script>
-        location.href = "<?php echo $URL; ?>/ventas/create.php";
+        location.href = "<?php echo $URL; ?>/ventas";
     </script>
 <?php
 } else {

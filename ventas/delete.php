@@ -1,6 +1,7 @@
 <?php
 
 $id_venta_get = $_GET['id_venta'];
+$nro_venta_get = $_GET['nro_venta'];
 
 include('../app/config.php');
 include('../layout/sesion.php');
@@ -223,7 +224,9 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                 $('#btn_anular_venta').click(function() {
 
                                     var id_venta = '<?php echo $id_venta_get; ?>';
+                                    var nro_venta = '<?php echo $nro_venta_get; ?>';
                                     actualizar_stock();
+                                    anular_venta();
 
                                     function actualizar_stock() {
 
@@ -259,6 +262,7 @@ include('../app/controllers/clientes/cargar_cliente.php');
                                         var url = "../app/controllers/ventas/anular_venta.php";
                                         $.get(url, {
                                             id_venta: id_venta,
+                                            nro_venta: nro_venta,
                                         }, function(datos) {
                                             $('#btn_anular_venta').html(datos);
                                         });
