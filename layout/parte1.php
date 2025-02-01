@@ -75,11 +75,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="info">
                         <a href="#" class="d-block"><?php echo $nombre_sesion; ?></a>
                     </div>
-                    <div class="info">
+                    <!-- <div class="info">
                         <a href="#" class="" style="align-items: center; margin-left: 20px; margin-top: 10px;">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
 
